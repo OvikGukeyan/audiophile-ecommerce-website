@@ -1,8 +1,15 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import styles from './Footer.module.scss'
 
-const Footer: React.FC = () => {
+import styles from './Footer.module.scss';
+import { CategoryType } from '../../redux/slices/filterSlice';
+
+type FooterPropsType = {
+    handleChooseCategory: (category: CategoryType) => void;
+    categoryes: CategoryType[];
+}
+
+const Footer: React.FC<FooterPropsType> = ({handleChooseCategory, categoryes }) => {
   return (
     <>
       <div className={styles.about_wrapper}>
@@ -35,9 +42,11 @@ const Footer: React.FC = () => {
                 <Link to='/'>
                   <li>HOME</li>
                 </Link>
-                <li>HEADPHONES</li>
-                <li>SPEAKERS</li>
-                <li>EARPHONES</li>
+                {categoryes.map((category) => (
+                  <Link to='/items'>
+                    <li onClick={() => handleChooseCategory(category)}>{category.name.toUpperCase()}</li>
+                  </Link>
+                ))}
               </ul>
             </nav>
             <div className={styles.social_media}>

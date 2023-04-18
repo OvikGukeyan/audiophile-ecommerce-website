@@ -1,16 +1,19 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../redux/store';
 import styles from './Items.module.scss';
 import { Item } from '../../components';
 import { fetchItems, selectItems } from '../../redux/slices/itemsSlice';
+import { selectFilters } from '../../redux/slices/filterSlice';
 
 const Items: React.FC = () => {
   const dispatch = useAppDispatch();
-  const {itemsArray, isLoaded, loadingRejected} = useSelector(selectItems)
+  const { itemsArray, isLoaded, loadingRejected } = useSelector(selectItems);
+  const { category } = useSelector(selectFilters);
+
   useEffect(() => {
     dispatch(fetchItems());
-  }, [])
+  }, [category])
 
   return (
     <div className={styles.items_wrapper}>
@@ -18,9 +21,9 @@ const Items: React.FC = () => {
         <h2>HEADPHONES</h2>
       </div>
       <div className={styles.items_box}>
-        {itemsArray.map((obj, ind) => (<Item 
-        key={ind}
-        {...obj}/>))}
+        {itemsArray.map((obj, ind) => (<Item
+          key={ind}
+          {...obj} />))}
       </div>
     </div>
   )

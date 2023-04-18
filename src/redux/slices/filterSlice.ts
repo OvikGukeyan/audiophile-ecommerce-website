@@ -1,8 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
+export type CategoryType = {
+    name: string;
+    image: string;
+} 
+
 interface filtersSliceState {
-    category: string | null;
+    category: CategoryType | null;
 }
 
 const initialState: filtersSliceState  = {
