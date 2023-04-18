@@ -1,0 +1,116 @@
+.about_wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 200px;
+
+    .about {
+        width: 75%;
+        display: flex;
+        justify-content: space-between;
+
+        .about_text {
+            width: 445px;
+            align-self: center;
+
+            h2 {
+                font-family: Manrope;
+                font-size: 40px;
+                font-weight: 700;
+                line-height: 44px;
+                letter-spacing: 1.4285714626312256px;
+
+                span {
+                    color: #D87D4A;
+                }
+            }
+
+            p {
+                font-size: 15px;
+                font-weight: 500;
+                line-height: 25px;
+                letter-spacing: 0px;
+
+            }
+        }
+
+        img {
+            border-radius: 8px;
+        }
+    }
+}
+
+.footer_wrapper {
+    width: 100%;
+    background-color: #101010;
+    display: flex;
+    justify-content: center;
+
+    .footer {
+        width: 75%;
+        margin: 75px 0 50px 0;
+        display: flex;
+        justify-content: space-between;
+
+        .footer_text {
+            width: 540px;
+
+            img {
+                margin-bottom: 35px;
+            }
+
+            p,
+            span {
+                font-size: 15px;
+                font-weight: 500;
+                line-height: 25px;
+                letter-spacing: 0px;
+                color: #fff;
+                opacity: 50%;
+            }
+
+            p {
+                margin-bottom: 50px;
+            }
+
+        }
+
+        .footer_links {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end;
+            height: 150px;
+
+            nav {
+                ul {
+                    width: 430px;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    font-style: bold;
+                    font-size: 13px;
+                    line-height: 25px;
+                    line-height: 141%;
+                    color: #fff;
+                    list-style: none;
+
+                    a {
+                        text-decoration: none;
+                        color: #fff;
+                    }
+                }
+            }
+
+            .social_media {
+                width: 120px;
+                display: flex;
+                justify-content: space-between;
+
+                img {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

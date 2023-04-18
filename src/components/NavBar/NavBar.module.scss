@@ -1,0 +1,61 @@
+.nav_bar_wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .nav_bar {
+        margin-bottom: 160px;
+        width: 75%;
+        display: flex;
+        justify-content: space-between;
+
+
+        .item {
+            width: 350px;
+            height: 285px;
+            background-image: url('../../../public/assets/shared/desktop/Mask.png');
+            background-repeat: no-repeat;
+            background-position: bottom;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+
+
+            img {
+                height: 200px;
+            }
+
+            h2 {
+                font-size: 18px;
+                font-weight: 700;
+                line-height: 25px;
+                letter-spacing: 1.2857142686843872px;
+                margin: 0px 0 15px 0;
+            }
+
+            p {
+                font-size: 13px;
+                font-weight: 700;
+                line-height: 18px;
+                letter-spacing: 1px;
+                margin: 0;
+
+                img {
+                    height: 12px;
+                    margin-left: 8px;
+                }
+            }
+
+            &:hover {
+                cursor: pointer;
+
+                p {
+                    color:#D87D4A;
+                    ;
+                }
+            }
+        }
+    }
+
+}
