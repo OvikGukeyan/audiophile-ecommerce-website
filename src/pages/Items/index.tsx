@@ -24,7 +24,7 @@ const Items: React.FC = () => {
       <div className={styles.items_box}>
         {itemsArray.length ? itemsArray.map((obj, ind) => (<Item
           key={ind}
-          {...obj} 
+          obj={obj} 
           ind={ind}
           />)) : <Skeleton/>}
       </div>
