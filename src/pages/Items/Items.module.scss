@@ -18,9 +18,12 @@
             color: #fff;
         }
 
-        .items_box {
-            
-        }
-        
+    }
+
+    .items_box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 160px auto 160px auto;
     }
 }
