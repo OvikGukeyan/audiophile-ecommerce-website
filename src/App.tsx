@@ -1,24 +1,32 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { Footer, Header, NavBar } from './components';
-import { CategoryType, setCategory } from './redux/slices/filterSlice';
+import { CategoryType, setCategory, setCurrentItem } from './redux/slices/filterSlice';
 import Items from './pages/Items';
 import Home from './pages/Home';
+import FullItem from './pages/FullItem';
 import './App.css';
+import { ItemType } from './redux/slices/itemsSlice';
 
 
 
 const App: React.FC = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const categoryes = [
     { name: 'headphones', image: "./assets/shared/desktop/image-headphones.png" },
     { name: 'speakers', image: "./assets/shared/desktop/image-speakers.png" },
-    { name: 'earphones', image: "./assets/shared/desktop/image-earphones.png"}];
+    { name: 'earphones', image: "./assets/shared/desktop/image-earphones.png" }];
 
   const handleChooseCategory = (category: CategoryType | null) => {
     dispatch(setCategory(category))
+  };
+
+  const handleChoseItem = (obj: ItemType) => {
+    dispatch(setCurrentItem(obj))
+    navigate('/full-item')
   }
 
   return (
@@ -29,7 +37,11 @@ const App: React.FC = () => {
       <Routes>
         <Route path='' element={<Home />} />
 
-        <Route path='items' element={<Items />} />
+        <Route path='items' element={<Items
+          handleChoseItem={handleChoseItem} />} />
+
+        <Route path='full-item' element={<FullItem />} />
+
 
         {/* <Route path='checkout' element={<Checkout/>}/> */}
 

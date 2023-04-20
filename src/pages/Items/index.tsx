@@ -3,10 +3,14 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../redux/store';
 import styles from './Items.module.scss';
 import { Item, Skeleton } from '../../components';
-import { fetchItems, selectItems } from '../../redux/slices/itemsSlice';
+import { ItemType, fetchItems, selectItems } from '../../redux/slices/itemsSlice';
 import { selectFilters } from '../../redux/slices/filterSlice';
 
-const Items: React.FC = () => {
+type ItemsPropsType = {
+  handleChoseItem: (obj: ItemType) => void;
+}
+
+const Items: React.FC<ItemsPropsType> = ({handleChoseItem}) => {
   const dispatch = useAppDispatch();
   const { itemsArray, isLoaded, loadingRejected } = useSelector(selectItems);
   const { category } = useSelector(selectFilters);
@@ -23,6 +27,7 @@ const Items: React.FC = () => {
       </div>
       <div className={styles.items_box}>
         {itemsArray.length ? itemsArray.map((obj, ind) => (<Item
+          handleChoseItem={handleChoseItem}
           key={ind}
           obj={obj} 
           ind={ind}
