@@ -7,12 +7,12 @@ export type CategoryType = {
     image: string;
 } 
 
-interface filtersSliceState {
+export interface FiltersSliceState {
     category: CategoryType | null;
     currentItem: ItemType | null;
 }
 
-const initialState: filtersSliceState  = {
+const initialState: FiltersSliceState  = {
     category: null,
     currentItem: null
 }

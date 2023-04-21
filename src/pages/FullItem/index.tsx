@@ -5,9 +5,18 @@ import styles from './FullItem.module.scss'
 import { Button, Item } from '../../components';
 import { useSelector } from 'react-redux';
 import { selectFilters } from '../../redux/slices/filterSlice';
+import { ItemType } from '../../redux/slices/itemsSlice';
 
-const FullItem: React.FC = () => {
+type FullItemPropsType = {
+    handleChoseItem: (obj: ItemType) => void;
+}
+
+const FullItem: React.FC<FullItemPropsType> = ({ handleChoseItem }) => {
     const { currentItem } = useSelector(selectFilters)
+
+    const handleAddToCart = (obj: ItemType) => {
+
+    }
     return (
         <div className={styles.full_item_wrapper}>
             <div className={styles.full_item}>
@@ -16,7 +25,10 @@ const FullItem: React.FC = () => {
                         <span>Go Back</span>
                     </Link>
                 </div>
-                {currentItem && <Item obj={currentItem}/>}
+                {currentItem && <Item
+                    handleButtonClick={handleAddToCart}
+                    buttunText={'ADD TO CART'}
+                    obj={currentItem} />}
                 <div className={styles.about}>
                     <div className={styles.features}>
                         <h2>FEATURES</h2>
@@ -40,21 +52,14 @@ const FullItem: React.FC = () => {
                 <div className={styles.also_like}>
                     <h2>YOU MAY ALSO LIKE</h2>
                     <div className={styles.items}>
-                        <div className={styles.item_box}>
-                            <img src="./assets/shared/desktop/image-xx99-mark-one-headphones.jpg" alt="" />
-                            <h3>XX99 MARK I</h3>
-                            <Button />
-                        </div>
-                        <div className={styles.item_box}>
-                            <img src="./assets/shared/desktop/image-xx99-mark-one-headphones.jpg" alt="" />
-                            <h3>XX99 MARK I</h3>
-                            <Button />
-                        </div>
-                        <div className={styles.item_box}>
-                            <img src="./assets/shared/desktop/image-xx99-mark-one-headphones.jpg" alt="" />
-                            <h3>XX99 MARK I</h3>
-                            <Button />
-                        </div>
+                        {currentItem?.others.map((obj) => (
+                            <div className={styles.item_box}>
+                                <img src={obj.image.desktop} alt="" />
+                                <h3>{obj.name.toUpperCase()}</h3>
+                                <Button
+                                    text={'SEE PRODUCT'} />
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>

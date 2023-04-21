@@ -38,9 +38,11 @@ const App: React.FC = () => {
         <Route path='' element={<Home />} />
 
         <Route path='items' element={<Items
-          handleChoseItem={handleChoseItem} />} />
+          handleButtonClick={handleChoseItem} />} />
 
-        <Route path='full-item' element={<FullItem />} />
+        <Route path='full-item' element={<FullItem 
+          handleChoseItem={handleChoseItem}
+        />} />
 
 
         {/* <Route path='checkout' element={<Checkout/>}/> */}

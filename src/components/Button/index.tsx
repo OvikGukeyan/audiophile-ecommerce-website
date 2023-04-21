@@ -1,14 +1,15 @@
 import React from 'react';
 import styles from './Button.module.scss'
-import { ItemType } from '../../redux/slices/itemsSlice';
+
 
 type ButtonPropsType = {
   onClick?: () => void;
+  text: string
 }
 
-const Button: React.FC<ButtonPropsType> = ({onClick}) => {
+const Button: React.FC<ButtonPropsType> = ({onClick, text}) => {
   return (
-    <button onClick={onClick} className={styles.button}>SEE PRODUCT</button>
+    <button onClick={onClick} className={styles.button}>{text}</button>
     )
 }
 
