@@ -24,8 +24,8 @@ const App: React.FC = () => {
     dispatch(setCategory(category))
   };
 
-  const handleChoseItem = (obj: ItemType) => {
-    dispatch(setCurrentItem(obj))
+  const handleChoseItem = (id: number) => {
+    dispatch(setCurrentItem(id))
     navigate('/full-item')
   }
 
@@ -38,10 +38,9 @@ const App: React.FC = () => {
         <Route path='' element={<Home />} />
 
         <Route path='items' element={<Items
-          handleButtonClick={handleChoseItem} />} />
+          handleChoseItem={handleChoseItem} />} />
 
         <Route path='full-item' element={<FullItem 
-          handleChoseItem={handleChoseItem}
         />} />
 
 

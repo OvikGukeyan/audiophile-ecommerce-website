@@ -72,6 +72,7 @@
 
 
         .image_box {
+            width: 100%;
             display: grid;
             grid-template: 1fr 1fr / 1fr 1.4fr;
             gap: 30px;

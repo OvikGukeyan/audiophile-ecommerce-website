@@ -9,12 +9,12 @@ export type CategoryType = {
 
 export interface FiltersSliceState {
     category: CategoryType | null;
-    currentItem: ItemType | null;
+    currentItemId: number | null;
 }
 
 const initialState: FiltersSliceState  = {
     category: null,
-    currentItem: null
+    currentItemId: null
 }
 
 const filterSlice = createSlice({
@@ -25,7 +25,7 @@ const filterSlice = createSlice({
             state.category = action.payload
         },
         setCurrentItem: (state, action) => {
-            state.currentItem = action.payload
+            state.currentItemId = action.payload
         }
     }
 });

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './FullItem.module.scss'
@@ -6,29 +6,52 @@ import { Button, Item } from '../../components';
 import { useSelector } from 'react-redux';
 import { selectFilters } from '../../redux/slices/filterSlice';
 import { ItemType } from '../../redux/slices/itemsSlice';
+import axios from 'axios';
 
 type FullItemPropsType = {
-    handleChoseItem: (obj: ItemType) => void;
 }
 
-const FullItem: React.FC<FullItemPropsType> = ({ handleChoseItem }) => {
-    const { currentItem } = useSelector(selectFilters)
+const FullItem: React.FC<FullItemPropsType> = () => {
+    const [count, setCount] = useState(0);
+    const [currentItem, setCurrentItem] = useState<ItemType>();
+    const { currentItemId } = useSelector(selectFilters);
 
-    const handleAddToCart = (obj: ItemType) => {
+    useEffect(() => {
+        axios.get(`https://635fcafd3e8f65f283bba8bc.mockapi.io/audiophile?id=${currentItemId}`)
+        .then(res => {
+            setCurrentItem(res.data[0])
+            console.log(res.data[0])
+        })
+        console.log(currentItem)
+    }, []);
+
+    const handleClickPlus = () => {
+        setCount(prev => prev + 1)
+    }
+
+    const handleClickMinus = () => {
+        count > 0 &&
+        setCount(prev => prev - 1)
+    }
+
+    const handleAddToCart = (id: number) => {
 
     }
     return (
         <div className={styles.full_item_wrapper}>
-            <div className={styles.full_item}>
+            {currentItem && <div className={styles.full_item}>
                 <div className={styles.back}>
                     <Link to='/items'>
                         <span>Go Back</span>
                     </Link>
                 </div>
-                {currentItem && <Item
+                <Item
+                    handleClickMinus={handleClickMinus}
+                    handleClickPlus={handleClickPlus}
+                    count={count}
                     handleButtonClick={handleAddToCart}
                     buttunText={'ADD TO CART'}
-                    obj={currentItem} />}
+                    obj={currentItem} />
                 <div className={styles.about}>
                     <div className={styles.features}>
                         <h2>FEATURES</h2>
@@ -52,17 +75,18 @@ const FullItem: React.FC<FullItemPropsType> = ({ handleChoseItem }) => {
                 <div className={styles.also_like}>
                     <h2>YOU MAY ALSO LIKE</h2>
                     <div className={styles.items}>
-                        {currentItem?.others.map((obj) => (
+                        {currentItem.others.map((obj) => (
                             <div className={styles.item_box}>
                                 <img src={obj.image.desktop} alt="" />
                                 <h3>{obj.name.toUpperCase()}</h3>
                                 <Button
+                                    className={'orange'}
                                     text={'SEE PRODUCT'} />
                             </div>
                         ))}
                     </div>
                 </div>
-            </div>
+            </div>}
         </div>
     )
 }

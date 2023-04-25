@@ -6,16 +6,15 @@ import { Item, Skeleton } from '../../components';
 import { ItemType, fetchItems, selectItems } from '../../redux/slices/itemsSlice';
 import { CategoryType, selectFilters, setCategory } from '../../redux/slices/filterSlice';
 import { useNavigate } from 'react-router-dom';
-import  qs from "qs";
+import qs from "qs";
 
 type ItemsPropsType = {
-  handleButtonClick: (obj: ItemType) => void;
+  handleChoseItem: (id: number) => void;
 }
 
-const Items: React.FC<ItemsPropsType> = ({handleButtonClick}) => {
+const Items: React.FC<ItemsPropsType> = ({ handleChoseItem }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const isMounted = useRef(false)
   const { itemsArray, isLoaded, loadingRejected } = useSelector(selectItems);
   const { category } = useSelector(selectFilters);
 
@@ -26,18 +25,18 @@ const Items: React.FC<ItemsPropsType> = ({handleButtonClick}) => {
 
   useEffect(() => {
     if (window.location.search) {
-        const params = qs.parse(window.location.search.substring(1)) as unknown as CategoryType;
-        dispatch(setCategory(params))
+      const params = qs.parse(window.location.search.substring(1)) as unknown as CategoryType;
+      dispatch(setCategory(params))
     }
-}, [])
+  }, [])
 
 
-useEffect(() => {
-        const queryString = qs.stringify(
-            category
-        , { skipNulls: true })
-        navigate(`/items?${queryString}`);
-}, [category]);
+  useEffect(() => {
+    const queryString = qs.stringify(
+      category
+      , { skipNulls: true })
+    navigate(`/items?${queryString}`);
+  }, [category]);
 
   return (
     <div className={styles.items_wrapper}>
@@ -46,12 +45,12 @@ useEffect(() => {
       </div>
       <div className={styles.items_box}>
         {itemsArray.length ? itemsArray.map((obj, ind) => (<Item
-          handleButtonClick={handleButtonClick}
+          handleButtonClick={handleChoseItem}
           buttunText={'SEE PRODUCT'}
           key={ind}
-          obj={obj} 
+          obj={obj}
           ind={ind}
-          />)) : <Skeleton/>}
+        />)) : <Skeleton />}
       </div>
     </div>
   )
