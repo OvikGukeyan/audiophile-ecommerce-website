@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 
 import styles from './Header.module.scss';
 import { CategoryType } from '../../redux/slices/filterSlice';
+import CartPopup from '../CartPopup';
 
 type HeaderPropsType = {
   handleChooseCategory: (category: CategoryType) => void;
   categoryes: CategoryType[];
 }
 
-const Header: React.FC<HeaderPropsType> = ({handleChooseCategory, categoryes}) => {
-
+const Header: React.FC<HeaderPropsType> = ({ handleChooseCategory, categoryes }) => {
   
+  const [cartOpen, setCartOpen] = useState(false);
 
   return (
     <header className={styles.header}>
@@ -34,10 +35,11 @@ const Header: React.FC<HeaderPropsType> = ({handleChooseCategory, categoryes}) =
             ))}
           </ul>
         </nav>
-        <div className="cart_logo">
-          <img src="./assets/cart-logo.svg" alt="" />
+        <div>
+          <img onClick={() => setCartOpen(!cartOpen)} src="./assets/cart-logo.svg" alt="" />
         </div>
       </div>
+      {cartOpen && <CartPopup/>}
     </header>
   )
 }

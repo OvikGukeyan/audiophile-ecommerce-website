@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import styles from './FullItem.module.scss'
 import { Button, Item } from '../../components';
-import { useSelector } from 'react-redux';
-import { selectFilters } from '../../redux/slices/filterSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectFilters, setCurrentItemId } from '../../redux/slices/filterSlice';
 import { ItemType } from '../../redux/slices/itemsSlice';
 import axios from 'axios';
 
@@ -12,26 +12,38 @@ type FullItemPropsType = {
 }
 
 const FullItem: React.FC<FullItemPropsType> = () => {
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(1);
     const [currentItem, setCurrentItem] = useState<ItemType>();
     const { currentItemId } = useSelector(selectFilters);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         axios.get(`https://635fcafd3e8f65f283bba8bc.mockapi.io/audiophile?id=${currentItemId}`)
-        .then(res => {
-            setCurrentItem(res.data[0])
-            console.log(res.data[0])
-        })
-        console.log(currentItem)
-    }, []);
+            .then(res => {
+                setCurrentItem(res.data[0])
+            })
+    }, [currentItemId]);
+    
+    useEffect(() => {
+        if (window.location.search) {
+            const params = Number(window.location.search.substring(4));
+            dispatch(setCurrentItemId(params))
+        }
+    }, [])
+
+    
+    useEffect(() => {
+        navigate(`/full-item?id=${currentItemId}`);
+    }, [currentItemId]);
 
     const handleClickPlus = () => {
         setCount(prev => prev + 1)
     }
 
     const handleClickMinus = () => {
-        count > 0 &&
-        setCount(prev => prev - 1)
+        count > 1 &&
+            setCount(prev => prev - 1)
     }
 
     const handleAddToCart = (id: number) => {
@@ -68,9 +80,9 @@ const FullItem: React.FC<FullItemPropsType> = () => {
                     </div>
                 </div>
                 <div className={styles.image_box}>
-                    <img className={styles.first} src="./assets/product-yx1-earphones/desktop/image-gallery-1.jpg" alt="" />
-                    <img className={styles.second} src="./assets/product-yx1-earphones/desktop/image-gallery-2.jpg" alt="" />
-                    <img className={styles.third} src="./assets/product-yx1-earphones/desktop/image-gallery-3.jpg" alt="" />
+                    <img className={styles.first} src={currentItem.gallery.first.desktop} alt="" />
+                    <img className={styles.second} src={currentItem.gallery.second.desktop} alt="" />
+                    <img className={styles.third} src={currentItem.gallery.third.desktop} alt="" />
                 </div>
                 <div className={styles.also_like}>
                     <h2>YOU MAY ALSO LIKE</h2>

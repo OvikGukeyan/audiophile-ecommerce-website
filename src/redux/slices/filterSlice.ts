@@ -1,6 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
-import { ItemType } from './itemsSlice';
 
 export type CategoryType = {
     name: string;
@@ -24,13 +23,17 @@ const filterSlice = createSlice({
         setCategory: (state, action) => {
             state.category = action.payload
         },
-        setCurrentItem: (state, action) => {
+        setCurrentItemId: (state, action) => {
             state.currentItemId = action.payload
+        },
+        setFilters: (state, action: PayloadAction<FiltersSliceState>) => {
+            state.currentItemId = action.payload.currentItemId;
+            state.category = action.payload.category;
         }
     }
 });
 
 export const selectFilters = (state: RootState) => state.filters;
-export const {setCategory, setCurrentItem} = filterSlice.actions; 
+export const {setCategory, setCurrentItemId, setFilters} = filterSlice.actions; 
 
 export default filterSlice.reducer;

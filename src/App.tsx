@@ -3,12 +3,11 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { Footer, Header, NavBar } from './components';
-import { CategoryType, setCategory, setCurrentItem } from './redux/slices/filterSlice';
+import { CategoryType, setCategory, setCurrentItemId } from './redux/slices/filterSlice';
 import Items from './pages/Items';
 import Home from './pages/Home';
 import FullItem from './pages/FullItem';
 import './App.css';
-import { ItemType } from './redux/slices/itemsSlice';
 
 
 
@@ -25,7 +24,7 @@ const App: React.FC = () => {
   };
 
   const handleChoseItem = (id: number) => {
-    dispatch(setCurrentItem(id))
+    dispatch(setCurrentItemId(id))
     navigate('/full-item')
   }
 
@@ -38,7 +37,8 @@ const App: React.FC = () => {
         <Route path='' element={<Home />} />
 
         <Route path='items' element={<Items
-          handleChoseItem={handleChoseItem} />} />
+          handleChoseItem={handleChoseItem}
+          categoryes={categoryes} />} />
 
         <Route path='full-item' element={<FullItem 
         />} />
