@@ -9,8 +9,9 @@ type ButtonPropsType = {
 }
 
 const Button: React.FC<ButtonPropsType> = ({onClick, text, className}) => {
+  console.log(className)
   return (
-    <button onClick={onClick} className={`${className === 'black' && styles.black || className === 'orange' && styles.orange || className === 'transparent' && styles.transparent} ${styles.button}`}>{text}</button>
+    <button onClick={onClick} className={`${styles.button} ${styles[className]}`}>{text}</button>
     )
 }
 
