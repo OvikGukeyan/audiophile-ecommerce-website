@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import styles from './Header.module.scss';
 import { CategoryType } from '../../redux/slices/filterSlice';
-import CartPopup from '../CartPopup';
+import { CartPopup } from '../';
 
 type HeaderPropsType = {
   handleChooseCategory: (category: CategoryType) => void;
@@ -11,13 +11,10 @@ type HeaderPropsType = {
 }
 
 const Header: React.FC<HeaderPropsType> = ({ handleChooseCategory, categoryes }) => {
-  
-  const [cartOpen, setCartOpen] = useState(false);
 
-  const handleCartOpen = () => {
-    setCartOpen(!cartOpen)
-    document.body.style.overflow = "hidden";
-  }
+
+
+
 
   return (
     <header className={styles.header}>
@@ -40,11 +37,8 @@ const Header: React.FC<HeaderPropsType> = ({ handleChooseCategory, categoryes })
             ))}
           </ul>
         </nav>
-        <div>
-          <img onClick={handleCartOpen} src="./assets/cart-logo.svg" alt="" />
-        </div>
+        {<CartPopup />}
       </div>
-      {cartOpen && <CartPopup/>}
     </header>
   )
 }

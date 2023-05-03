@@ -11,25 +11,29 @@
         align-items: center;
         justify-content: space-between;
         border-bottom: 1px solid #979797;
-    }
 
-    nav {
-        ul {
-            width: 430px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            font-style: bold;
-            font-size: 13px;
-            line-height: 25px;
-            line-height: 141%;
-            color: #fff;
-            list-style: none;
-
-            a {
-                text-decoration: none;
+        nav {
+            ul {
+                width: 430px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                font-style: bold;
+                font-size: 13px;
+                line-height: 25px;
+                line-height: 141%;
                 color: #fff;
+                list-style: none;
+    
+                a {
+                    text-decoration: none;
+                    color: #fff;
+                }
             }
         }
+
+      
     }
+
+    
 }
