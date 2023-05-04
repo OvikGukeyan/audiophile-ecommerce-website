@@ -9,7 +9,7 @@ type ItemPropsType = {
   count?: number;
   handleClickMinus?: () => void;
   handleClickPlus?: () => void;
-  handleButtonClick: (obj: number) => void;
+  handleButtonClick: (obj: ItemType) => void;
   obj: ItemType;
   ind?: number
   buttunText: string
@@ -35,7 +35,7 @@ const Item: React.FC<ItemPropsType> = ({ obj, ind, handleButtonClick, buttunText
           <Button
             className={'orange'}
             text={buttunText}
-            onClick={() => handleButtonClick(obj.id)} />
+            onClick={() => handleButtonClick(obj)} />
         </div>
 
       </div>

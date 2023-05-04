@@ -3,13 +3,13 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../redux/store';
 import styles from './Items.module.scss';
 import { Item, Skeleton } from '../../components';
-import { fetchItems, selectItems } from '../../redux/slices/itemsSlice';
+import { ItemType, fetchItems, selectItems } from '../../redux/slices/itemsSlice';
 import { CategoryType, selectFilters, setCategory } from '../../redux/slices/filterSlice';
 import { useNavigate } from 'react-router-dom';
 import qs from "qs";
 
 type ItemsPropsType = {
-  handleChoseItem: (id: number) => void;
+  handleChoseItem: (obj: ItemType) => void;
   categoryes: CategoryType[]
 }
 

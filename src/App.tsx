@@ -8,6 +8,7 @@ import Items from './pages/Items';
 import Home from './pages/Home';
 import FullItem from './pages/FullItem';
 import './App.css';
+import { ItemType } from './redux/slices/itemsSlice';
 
 
 
@@ -23,8 +24,8 @@ const App: React.FC = () => {
     dispatch(setCategory(category))
   };
 
-  const handleChoseItem = (id: number) => {
-    dispatch(setCurrentItemId(id))
+  const handleChoseItem = (obj: ItemType) => {
+    dispatch(setCurrentItemId(obj.id))
     navigate('/full-item')
   }
 

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectFilters, setCurrentItemId } from '../../redux/slices/filterSlice';
 import { ItemType } from '../../redux/slices/itemsSlice';
 import axios from 'axios';
+import { addCartItem } from '../../redux/slices/cartSlice';
 
 type FullItemPropsType = {
 }
@@ -46,8 +47,8 @@ const FullItem: React.FC<FullItemPropsType> = () => {
             setCount(prev => prev - 1)
     }
 
-    const handleAddToCart = (id: number) => {
-
+    const handleAddToCart = (obj: ItemType) => {
+        dispatch(addCartItem(obj)) 
     }
     return (
         <div className={styles.full_item_wrapper}>

@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
 import styles from './CartItem.module.scss';
+import { CartItemType } from '../../redux/slices/cartSlice';
 
-const CartItem: React.FC = () => {
+type CartItemProps = {
+    name: string;
+    price: number;
+    image: string
+}
+
+const CartItem: React.FC<CartItemProps> = (obj) => {
     const [itemCount, setItemCount] = useState(1);
-
+    console.log(obj)
     const handleClickPlus = () => {
         setItemCount(prev => prev + 1)
     }
@@ -15,10 +22,10 @@ const CartItem: React.FC = () => {
     return (
         <div className={styles.cart_items}>
             <div className={styles.item}>
-                <img src="./assets/product-yx1-earphones/desktop/image-product.jpg" alt="" />
+                <img src={obj.image} alt="" />
                 <div className={styles.text}>
-                    <h3>XX99 MK II </h3>
-                    <span>$ 2,999</span>
+                    <h3>{obj.name}</h3>
+                    <span>$ {obj.price}</span>
                 </div>
                 <div className={styles.counter}>
                     <button onClick={handleClickMinus} className={styles.count_button}>-</button>
