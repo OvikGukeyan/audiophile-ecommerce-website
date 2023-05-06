@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import styles from './Header.module.scss';
 import { CategoryType } from '../../redux/slices/filterSlice';
@@ -8,14 +8,12 @@ import { CartPopup } from '../';
 type HeaderPropsType = {
   handleChooseCategory: (category: CategoryType) => void;
   categoryes: CategoryType[];
-}
+};
+
+
 
 const Header: React.FC<HeaderPropsType> = ({ handleChooseCategory, categoryes }) => {
-
-
-
-
-
+  
   return (
     <header className={styles.header}>
       <div className={styles.wrapper}>

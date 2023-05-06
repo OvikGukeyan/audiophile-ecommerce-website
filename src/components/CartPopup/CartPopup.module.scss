@@ -44,7 +44,25 @@
             }
         }
 
-        
+        .items {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: scroll;
+            height: 100%;
+            
+
+            &::-webkit-scrollbar {
+                width: 0px;
+            }
+
+            .empty_logo {
+                height: 220px;
+                width: 220px;
+                margin: auto;
+            }
+
+        }
 
         .total {
             display: flex;

@@ -25,7 +25,7 @@ const Item: React.FC<ItemPropsType> = ({ obj, ind, handleButtonClick, buttunText
         {obj.new && <span>NEW PRODUCT</span>}
         <h1>{obj.name.toUpperCase()}</h1>
         <p>{obj.description}</p>
-        {location.pathname === '/full-item' && <h3>$ 2, 999</h3>}
+        {location.pathname === '/full-item' && <h3>$ {obj.price}</h3>}
         <div className={styles.button_box}>
           {location.pathname === '/full-item' && <div className={styles.counter}>
             <button onClick={handleClickMinus} className={styles.count_button}>-</button>

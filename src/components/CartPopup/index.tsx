@@ -2,17 +2,24 @@ import React, { useRef, useState, MouseEvent } from 'react';
 import styles from './CartPopup.module.scss'
 import Button from '../Button';
 import { CartItem } from '../';
-import { selectCart } from '../../redux/slices/cartSlice';
-import { useSelector } from 'react-redux';
+import { clearCartItems, itemMinus, itemPlus, selectCart } from '../../redux/slices/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const CartPopup: React.FC = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [cartOpen, setCartOpen] = useState(false);
-    const { cartItems } = useSelector(selectCart)
+    const { cartItems, totalAmount, totalCount } = useSelector(selectCart)
     const sortRef = useRef<HTMLDivElement>(null);
-    console.log(cartItems)
-    console.log(Object.values(cartItems) )
+
+    const handleCheckoutClick = () => {
+        navigate('/checkout');
+        setCartOpen(false);
+        document.body.style.overflow = "";
+    }
 
     const handleCartOpen = () => {
         setCartOpen(true)
@@ -28,6 +35,21 @@ const CartPopup: React.FC = () => {
         }
     };
 
+    const handleClearCart = () => {
+        dispatch(clearCartItems());
+    };
+
+    const handleMinusClick = (id: number) => {
+        dispatch(itemMinus(id))
+    };
+
+    const handlePlusClick = (id: number) => {
+        dispatch(itemPlus(id))
+    }
+
+
+
+
 
 
 
@@ -37,19 +59,26 @@ const CartPopup: React.FC = () => {
             {cartOpen && <div onClick={(e) => handleOutsideClick(e)} className={styles.popup_wrapper}>
                 <div ref={sortRef} className={styles.popup}>
                     <div className={styles.head}>
-                        <h3>CART (3)</h3>
-                        <span>Remove all</span>
+                        <h3>CART ({totalCount})</h3>
+                        <span onClick={handleClearCart}>Remove all</span>
                     </div>
-                    {cartItems && Object.values(cartItems).map((obj, ind) => (
-                        <CartItem
-                            key={ind}
-                            {...obj} />
-                    ))}
+                    <div className={styles.items}>
+                        {Object.values(cartItems).length ? Object.values(cartItems).map((obj, ind) => (
+                            <CartItem
+                                key={ind}
+                                handlePlusClick={handlePlusClick}
+                                handleMinusClick={handleMinusClick}
+                                obj={obj} />
+                        )): 
+                        <img className={styles.empty_logo} src="./assets/cart/cart-empty.png" alt="cart-empty" />
+                        }
+                    </div>
+
                     <div className={styles.total}>
                         <h2>TOTAL</h2>
-                        <span>$ 5000</span>
+                        <span>$ {totalAmount}</span>
                     </div>
-                    <Button text={'CHECKOUT'} className={'cart'} />
+                    <Button onClick={handleCheckoutClick} text={'CHECKOUT'} className={'cart'} />
                 </div>
             </div>}
         </div>

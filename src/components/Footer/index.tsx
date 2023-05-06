@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import styles from './Footer.module.scss';
 import { CategoryType } from '../../redux/slices/filterSlice';
@@ -10,9 +10,11 @@ type FooterPropsType = {
 }
 
 const Footer: React.FC<FooterPropsType> = ({handleChooseCategory, categoryes }) => {
+  const location = useLocation();
+
   return (
     <>
-      <div className={styles.about_wrapper}>
+      {location.pathname !== '/checkout' && <div className={styles.about_wrapper}>
         <div className={styles.about}>
           <div className={styles.about_text}>
             <h2>Bringing you the <span>best</span> audio gear</h2>
@@ -20,7 +22,7 @@ const Footer: React.FC<FooterPropsType> = ({handleChooseCategory, categoryes }) 
           </div>
           <img src="./assets/shared/desktop/image-best-gear.jpg" alt="" />
         </div>
-      </div>
+      </div>}
 
 
       <div className={styles.footer_wrapper}>
@@ -50,9 +52,10 @@ const Footer: React.FC<FooterPropsType> = ({handleChooseCategory, categoryes }) 
               </ul>
             </nav>
             <div className={styles.social_media}>
-              <img src="./assets/shared/desktop/icon-facebook.svg" alt="" />
-              <img src="./assets/shared/desktop/icon-twitter.svg" alt="" />
-              <img src="./assets/shared/desktop/icon-instagram.svg" alt="" />
+              <a target='_blank' href="https://www.facebook.com"><img src="./assets/shared/desktop/icon-facebook.svg" alt="" /></a>
+              <a target='_blank' href="https://www.twitter.com"><img src="./assets/shared/desktop/icon-twitter.svg" alt="" /></a>
+              <a target='_blank' href="https://www.instagram.com"><img src="./assets/shared/desktop/icon-instagram.svg" alt="" /></a>
+              
             </div>
           </div>
         </div>

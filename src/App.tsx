@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { Footer, Header, NavBar } from './components';
@@ -9,12 +9,14 @@ import Home from './pages/Home';
 import FullItem from './pages/FullItem';
 import './App.css';
 import { ItemType } from './redux/slices/itemsSlice';
+import Checkout from './pages/Checkout';
 
 
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const categoryes = [
     { name: 'headphones', image: "./assets/shared/desktop/image-headphones.png" },
     { name: 'speakers', image: "./assets/shared/desktop/image-speakers.png" },
@@ -41,17 +43,16 @@ const App: React.FC = () => {
           handleChoseItem={handleChoseItem}
           categoryes={categoryes} />} />
 
-        <Route path='full-item' element={<FullItem 
-        />} />
+        <Route path='full-item' element={<FullItem />} />
 
 
-        {/* <Route path='checkout' element={<Checkout/>}/> */}
+        <Route path='checkout' element={<Checkout/>}/>
 
       </Routes>
-      <NavBar
+      {location.pathname !== '/checkout' && <NavBar
         handleChooseCategory={handleChooseCategory}
         categoryes={categoryes}
-      />
+      />}
       <Footer
         handleChooseCategory={handleChooseCategory}
         categoryes={categoryes} />
