@@ -8,9 +8,13 @@ const Checkout: React.FC = () => {
         register,
         formState: { errors, isValid },
         handleSubmit,
+        watch,
         reset } = useForm({
             mode: "onBlur"
         });
+
+    const paymentMethod = watch('payment');
+    console.log(paymentMethod)
 
     const submitHandler = () => {
         reset();
@@ -30,101 +34,140 @@ const Checkout: React.FC = () => {
                 <div className={styles.checkout_box}>
                     <h1>CHECKOUT</h1>
                     <form onSubmit={handleSubmit(submitHandler)}>
-                        <div className={styles.billing_details}>
-                            <h3>BILLING DETAILS</h3>
-                            <div className={styles.input_box}>
-                                <label >First Name:
-                                    {errors?.firstName && <p>{errors?.firstName?.message?.toString() || 'Wrong format!'}</p>}
-                                    <input className={errors?.firstName && styles.input_error} {...register('firstName', {
-                                        required: 'Required field',
-                                        pattern: {
-                                            value: /[A-Za-z]{3}/,
-                                            message: 'Name must contain at least three letters'
-                                        }
-                                    })} />
-                                </label>
+                        <h3>BILLING DETAILS</h3>
+                        <div className={styles.input_box}>
+                            <label >First Name:
+                                {errors?.firstName && <p>{errors?.firstName?.message?.toString() || 'Wrong format!'}</p>}
+                                <input className={errors?.firstName && styles.input_error} {...register('firstName', {
+                                    required: 'Required field',
+                                    pattern: {
+                                        value: /[A-Za-z]{3}/,
+                                        message: 'Name must contain at least three letters'
+                                    }
+                                })} />
+                            </label>
 
-                                <label >Last Name:
-                                    {errors?.lastName && <p>{errors?.lastName?.message?.toString() || 'Wrong format!'}</p>}
-                                    <input className={errors?.lastName && styles.input_error} {...register('lastName', {
-                                        required: 'Required field',
-                                        pattern: {
-                                            value: /[A-Za-z]{3}/,
-                                            message: 'Name must contain at least three letters'
-                                        }
-                                    })} />
-                                </label>
+                            <label >Last Name:
+                                {errors?.lastName && <p>{errors?.lastName?.message?.toString() || 'Wrong format!'}</p>}
+                                <input className={errors?.lastName && styles.input_error} {...register('lastName', {
+                                    required: 'Required field',
+                                    pattern: {
+                                        value: /[A-Za-z]{3}/,
+                                        message: 'Name must contain at least three letters'
+                                    }
+                                })} />
+                            </label>
 
-                                <label>Email-Address:
-                                    {errors?.emailAddress && <p>{errors?.emailAddress?.message?.toString() || 'Wrong format!'}</p>}
-                                    <input className={errors?.emailAddress && styles.input_error} {...register('emailAddress', {
-                                        required: 'Required field',
-                                        pattern: {
-                                            value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/,
-                                            message: 'Wrong E-mail format!'
-                                        }
-                                    })} type="email" />
-                                </label>
-                                <label>Phone Number:
-                                    {errors?.phoneNumber && <p>{errors?.phoneNumber?.message?.toString() || 'Wrong format!'}</p>}
-                                    <input className={errors?.phoneNumber && styles.input_error} {...register('phoneNumber', {
-                                        required: 'Required field',
-                                        pattern: {
-                                            value: /^(\+?\d{1,3}[-\.\s]?)?\(?\d{3}\)?[-\.\s]?\d{3}[-\.\s]?\d{2}[-\.\s]?\d{2}$/,
-                                            message: 'Wrong Number format!'
-                                        }
-                                    })} type="tel" />
-                                </label>
+                            <label>Email-Address:
+                                {errors?.emailAddress && <p>{errors?.emailAddress?.message?.toString() || 'Wrong format!'}</p>}
+                                <input className={errors?.emailAddress && styles.input_error} {...register('emailAddress', {
+                                    required: 'Required field',
+                                    pattern: {
+                                        value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/,
+                                        message: 'Wrong E-mail format!'
+                                    }
+                                })} type="email" />
+                            </label>
+                            <label>Phone Number:
+                                {errors?.phoneNumber && <p>{errors?.phoneNumber?.message?.toString() || 'Wrong format!'}</p>}
+                                <input className={errors?.phoneNumber && styles.input_error} {...register('phoneNumber', {
+                                    required: 'Required field',
+                                    pattern: {
+                                        value: /^(\+?\d{1,3}[-\.\s]?)?\(?\d{3}\)?[-\.\s]?\d{3}[-\.\s]?\d{2}[-\.\s]?\d{2}$/,
+                                        message: 'Wrong Number format!'
+                                    }
+                                })} type="tel" />
+                            </label>
 
-                            </div>
-
-                            <h3>SHIPPING INFO</h3>
-                            <div className={styles.input_box}>
-                                <label className={styles.adress_input} >Adress:
-                                    {errors?.adress && <p>{errors?.adress?.message?.toString() || 'Wrong format!'}</p>}
-                                    <input className={errors?.firstName && styles.input_error} {...register('firstName', {
-                                        required: 'Required field',
-                                        pattern: {
-                                            value: /[A-Za-z]/,
-                                            message: 'Wrong Adress format!'
-                                        }
-                                    })} />
-                                </label>
-
-                                <label >ZIP Code:
-                                    {errors?.name && <p>{errors?.lastName?.message?.toString() || 'Wrong format!'}</p>}
-                                    <input className={errors?.lastName && styles.input_error} {...register('lastName', {
-                                        required: 'Required field',
-                                        pattern: {
-                                            value: /[0-9]/,
-                                            message: 'Wrong ZIP code format!'
-                                        }
-                                    })} />
-                                </label>
-
-                                <label>City:
-                                    {errors?.emailAddress && <p>{errors?.emailAddress?.message?.toString() || 'Wrong format!'}</p>}
-                                    <input className={errors?.emailAddress && styles.input_error} {...register('emailAddress', {
-                                        required: 'Required field',
-                                        pattern: {
-                                            value: /[a-zA-Z]/,
-                                            message: 'Wrong City format!'
-                                        }
-                                    })}  />
-                                </label>
-                                <label>Country:
-                                    {errors?.phoneNumber && <p>{errors?.phoneNumber?.message?.toString() || 'Wrong format!'}</p>}
-                                    <input className={errors?.phoneNumber && styles.input_error} {...register('phoneNumber', {
-                                        required: 'Required field',
-                                        pattern: {
-                                            value: /[a-zA-Z]/,
-                                            message: 'Wrong Country format!'
-                                        }
-                                    })}  />
-                                </label>
-                                
-                            </div>
                         </div>
+
+                        <h3>SHIPPING INFO</h3>
+                        <div className={styles.input_box}>
+                            <label className={styles.adress_input} >Adress:
+                                {errors?.adress && <p>{errors?.adress?.message?.toString() || 'Wrong format!'}</p>}
+                                <input className={errors?.adress && styles.input_error} {...register('adress', {
+                                    required: 'Required field',
+                                    pattern: {
+                                        value: /^[a-zA-Z0-9\s,'-]*$/,
+                                        message: 'Wrong Adress format!'
+                                    }
+                                })} />
+                            </label>
+
+                            <label >ZIP Code:
+                                {errors?.zipCode && <p>{errors?.zipCode?.message?.toString() || 'Wrong format!'}</p>}
+                                <input className={errors?.zipCode && styles.input_error} {...register('zipCode', {
+                                    required: 'Required field',
+                                    pattern: {
+                                        value: /^\d+$/,
+                                        message: 'Wrong ZIP code format!'
+                                    }
+                                })} />
+                            </label>
+
+                            <label>City:
+                                {errors?.city && <p>{errors?.city?.message?.toString() || 'Wrong format!'}</p>}
+                                <input className={errors?.city && styles.input_error} {...register('city', {
+                                    required: 'Required field',
+                                    pattern: {
+                                        value: /^\D*$/,
+                                        message: 'Wrong City format!'
+                                    }
+                                })} />
+                            </label>
+                            <label>Country:
+                                {errors?.country && <p>{errors?.country?.message?.toString() || 'Wrong format!'}</p>}
+                                <input className={errors?.country && styles.input_error} {...register('country', {
+                                    required: 'Required field',
+                                    pattern: {
+                                        value: /^\D*$/,
+                                        message: 'Wrong Country format!'
+                                    }
+                                })} />
+                            </label>
+
+                        </div>
+
+                        <h3>PAYMENT DETAILS</h3>
+                        <div className={styles.payment}>
+                            <label>Payment Method:
+                                <div>
+                                    <label>e-Money
+                                        <input  {...register('payment')} type="radio" value="e-Money" />
+                                    </label>
+
+                                    <label>Cash on Delivery
+                                        <input type="radio" {...register('payment')} value="cash" />
+                                    </label>
+                                </div>
+                            </label>
+                        </div>
+                        {paymentMethod === 'e-Money' &&
+                            <div className={styles.input_box}>
+                                <label>e-Money Number
+                                    {errors?.eMoneyNimber && <p>{errors?.eMoneyNimber?.message?.toString() || 'Wrong format!'}</p>}
+                                    <input className={errors?.eMoneyNimber && styles.input_error}  {...register('eMoneyNimber', {
+                                        required: 'Required field',
+                                        pattern: {
+                                            value: /^[0-9]{12,19}$/,
+                                            message: 'Wrong e-Money Number format!'
+                                        }
+                                    })} />
+                                </label>
+                                <label>e-Money PIN
+                                    {errors?.eMoneyPin && <p>{errors?.eMoneyPin?.message?.toString() || 'Wrong format!'}</p>}
+                                    <input className={errors?.eMoneyPin && styles.input_error} {...register('eMoneyPin', {
+                                        required: 'Required field',
+                                        pattern: {
+                                            value: /^[0-9]{4}$/,
+                                            message: 'Wrong PIN format!'
+                                        }
+
+                                    })} />
+                                </label>
+                            </div>
+                        }
+
                         <input type="submit" />
                     </form>
                 </div>
