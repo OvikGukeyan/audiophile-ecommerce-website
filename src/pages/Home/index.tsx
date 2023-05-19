@@ -1,8 +1,11 @@
 import React from 'react';
 import styles from './Home.module.scss'
 import { Button } from '../../components';
+import { useDispatch } from 'react-redux';
 
 const Home: React.FC = () => {
+  
+
   return (
     <div className={styles.home_wrapper}>
       <div className={styles.home_head_wrapper}>

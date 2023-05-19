@@ -9,8 +9,8 @@ type CartItemProps = {
         image: string;
         count: number;
     };
-    handleMinusClick: (id: number) => void;
-    handlePlusClick: (id: number) => void;
+    handleMinusClick?: (id: number) => void;
+    handlePlusClick?: (id: number) => void;
 
 }
 
@@ -23,11 +23,11 @@ const CartItem: React.FC<CartItemProps> = ({ obj, handleMinusClick, handlePlusCl
                 <h3>{obj.name}</h3>
                 <span>$ {obj.price}</span>
             </div>
-            <div className={styles.counter}>
+            {handleMinusClick && handlePlusClick ? <div className={styles.counter}>
                 <button onClick={() => handleMinusClick(obj.id)} className={styles.count_button}>-</button>
                 <div className={styles.meaning}>{obj.count}</div>
                 <button onClick={() => handlePlusClick(obj.id)} className={styles.count_button}>+</button>
-            </div>
+            </div>: <p>x{obj.count}</p>}
         </div>
     )
 }

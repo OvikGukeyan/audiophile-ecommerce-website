@@ -2,11 +2,14 @@ import React from 'react';
 import styles from './Checkout.module.scss'
 import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import { Button, CartItem } from '../../components';
+import { useSelector } from 'react-redux';
+import { selectCart } from '../../redux/slices/cartSlice';
 
 const Checkout: React.FC = () => {
     const {
         register,
-        formState: { errors, isValid },
+        formState: { errors },
         handleSubmit,
         watch,
         reset } = useForm({
@@ -14,7 +17,10 @@ const Checkout: React.FC = () => {
         });
 
     const paymentMethod = watch('payment');
-    console.log(paymentMethod)
+    const { cartItems, totalAmount } = useSelector(selectCart);
+    const vat = (totalAmount / 5).toFixed(2);
+    const shiping = totalAmount > 5000 ? 0 : 50;
+    const grandTotal = totalAmount + shiping;
 
     const submitHandler = () => {
         reset();
@@ -172,7 +178,32 @@ const Checkout: React.FC = () => {
                     </form>
                 </div>
                 <div className={styles.summary_box}>
-
+                    <h2>SUMMARY</h2>
+                    <div className={styles.item_box}>
+                    {Object.values(cartItems).length && Object.values(cartItems).map((obj, ind) => (
+                            <CartItem
+                                key={ind}
+                                obj={obj} />
+                        ))
+                        }
+                    </div>
+                    <div className={styles.sum_box}>
+                        <p>TOTAL</p>
+                        <span>$ {totalAmount.toLocaleString()}</span>
+                    </div>
+                    <div className={styles.sum_box}>
+                        <p>SHIPING</p>
+                        <span>$ {shiping}</span>
+                    </div>
+                    <div className={styles.sum_box}>
+                        <p>VAT (INCLUDED)</p>
+                        <span>$ {vat.toLocaleString()}</span>
+                    </div>
+                    <div className={`${styles.sum_box} ${styles.lastSumBox}`}>
+                        <p>GRAND TOTAL</p>
+                        <span className={styles.orange}>$ {grandTotal.toLocaleString()}</span>
+                    </div>
+                    <Button text={'CONTINUE & PAY'} className={'cart'} />
                 </div>
             </div>
         </div>

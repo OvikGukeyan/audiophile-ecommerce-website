@@ -21,9 +21,7 @@
         background-color: #4C4C4C;
     }
 
-    &:hover {
-        background-color: #000;
-    }
+    
 }
 
 .orange {
@@ -68,6 +66,10 @@
 
     &:active {
         background-color: #D87D4A;
+    }
+
+    &:disabled {
+        background-color: #4C4C4C;
     }
 
 }

@@ -29,7 +29,7 @@ const cartSlise = createSlice({
     reducers: {
         addCartItem: (state, action: PayloadAction<ItemType>) => {
             !state.cartItems[action.payload.id] ?
-                state.cartItems[action.payload.id] = { id: action.payload.id, name: action.payload.name, price: action.payload.price, image: action.payload.image.desktop, count: 0 } :
+                state.cartItems[action.payload.id] = { id: action.payload.id, name: action.payload.name, price: action.payload.price, image: action.payload.image.desktop, count: 1 } :
                 state.cartItems[action.payload.id].count = state.cartItems[action.payload.id].count + 1;
             state.totalAmount = getTotalAmount(state.cartItems);
             state.totalCount = getTotalCount(state.cartItems);

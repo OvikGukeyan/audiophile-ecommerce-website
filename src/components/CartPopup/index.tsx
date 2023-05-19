@@ -4,7 +4,7 @@ import Button from '../Button';
 import { CartItem } from '../';
 import { clearCartItems, itemMinus, itemPlus, selectCart } from '../../redux/slices/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 
 
@@ -14,6 +14,7 @@ const CartPopup: React.FC = () => {
     const [cartOpen, setCartOpen] = useState(false);
     const { cartItems, totalAmount, totalCount } = useSelector(selectCart)
     const sortRef = useRef<HTMLDivElement>(null);
+    const location = useLocation()
 
     const handleCheckoutClick = () => {
         navigate('/checkout');
@@ -55,7 +56,7 @@ const CartPopup: React.FC = () => {
 
     return (
         <div >
-            <img onClick={handleCartOpen} src="./assets/cart-logo.svg" alt="" />
+            {location.pathname !== '/checkout' && <img onClick={handleCartOpen} src="./assets/cart-logo.svg" alt="" />}
             {cartOpen && <div onClick={(e) => handleOutsideClick(e)} className={styles.popup_wrapper}>
                 <div ref={sortRef} className={styles.popup}>
                     <div className={styles.head}>
@@ -78,7 +79,7 @@ const CartPopup: React.FC = () => {
                         <h2>TOTAL</h2>
                         <span>$ {totalAmount}</span>
                     </div>
-                    <Button onClick={handleCheckoutClick} text={'CHECKOUT'} className={'cart'} />
+                    <Button disable={Object.values(cartItems).length ? false : true} onClick={handleCheckoutClick} text={'CHECKOUT'} className={'cart'} />
                 </div>
             </div>}
         </div>
