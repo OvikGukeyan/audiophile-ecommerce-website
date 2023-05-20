@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import styles from './FullItem.module.scss'
-import { Button, Item } from '../../components';
+import { Item, OtherItem } from '../../components';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFilters, setCurrentItemId } from '../../redux/slices/filterSlice';
 import { ItemType } from '../../redux/slices/itemsSlice';
@@ -10,9 +10,10 @@ import axios from 'axios';
 import { addCartItem } from '../../redux/slices/cartSlice';
 
 type FullItemPropsType = {
+    handleChoseItem: (id: number) => void
 }
 
-const FullItem: React.FC<FullItemPropsType> = () => {
+const FullItem: React.FC<FullItemPropsType> = ({ handleChoseItem }) => {
     const [count, setCount] = useState(1);
     const [currentItem, setCurrentItem] = useState<ItemType>();
     const { currentItemId } = useSelector(selectFilters);
@@ -25,7 +26,7 @@ const FullItem: React.FC<FullItemPropsType> = () => {
                 setCurrentItem(res.data[0])
             })
     }, [currentItemId]);
-    
+
     useEffect(() => {
         if (window.location.search) {
             const params = Number(window.location.search.substring(4));
@@ -33,7 +34,7 @@ const FullItem: React.FC<FullItemPropsType> = () => {
         }
     }, [])
 
-    
+
     useEffect(() => {
         navigate(`/full-item?id=${currentItemId}`);
     }, [currentItemId]);
@@ -47,8 +48,15 @@ const FullItem: React.FC<FullItemPropsType> = () => {
             setCount(prev => prev - 1)
     }
 
-    const handleAddToCart = (obj: ItemType) => {
-        dispatch(addCartItem(obj)) 
+    const handleAddToCart = (obj: ItemType, count: number) => {
+        const item = {
+            id: obj.id,
+            name: obj.name,
+            price: obj.price,
+            image: obj.image.desktop,
+            count: count
+        }
+        dispatch(addCartItem(item))
     }
     return (
         <div className={styles.full_item_wrapper}>
@@ -62,7 +70,7 @@ const FullItem: React.FC<FullItemPropsType> = () => {
                     handleClickMinus={handleClickMinus}
                     handleClickPlus={handleClickPlus}
                     count={count}
-                    handleButtonClick={handleAddToCart}
+                    handleAddToCart={handleAddToCart}
                     buttunText={'ADD TO CART'}
                     obj={currentItem} />
                 <div className={styles.about}>
@@ -89,13 +97,9 @@ const FullItem: React.FC<FullItemPropsType> = () => {
                     <h2>YOU MAY ALSO LIKE</h2>
                     <div className={styles.items}>
                         {currentItem.others.map((obj) => (
-                            <div className={styles.item_box}>
-                                <img src={obj.image.desktop} alt="" />
-                                <h3>{obj.name.toUpperCase()}</h3>
-                                <Button
-                                    className={'orange'}
-                                    text={'SEE PRODUCT'} />
-                            </div>
+                            <OtherItem
+                                handleChoseItem={handleChoseItem}
+                                obj={obj} />
                         ))}
                     </div>
                 </div>

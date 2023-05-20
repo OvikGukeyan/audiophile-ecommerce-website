@@ -9,13 +9,14 @@ type ItemPropsType = {
   count?: number;
   handleClickMinus?: () => void;
   handleClickPlus?: () => void;
-  handleButtonClick: (obj: ItemType) => void;
+  handleAddToCart?: (obj: ItemType, count: number) => void;
+  handleChoseItem?: (id: number) => void;
   obj: ItemType;
   ind?: number
   buttunText: string
 }
 
-const Item: React.FC<ItemPropsType> = ({ obj, ind, handleButtonClick, buttunText, count, handleClickPlus, handleClickMinus }) => {
+const Item: React.FC<ItemPropsType> = ({ obj, ind, handleAddToCart, handleChoseItem, buttunText, count, handleClickPlus, handleClickMinus }) => {
   const location = useLocation();
 
   return (
@@ -27,15 +28,27 @@ const Item: React.FC<ItemPropsType> = ({ obj, ind, handleButtonClick, buttunText
         <p>{obj.description}</p>
         {location.pathname === '/full-item' && <h3>$ {obj.price}</h3>}
         <div className={styles.button_box}>
-          {location.pathname === '/full-item' && <div className={styles.counter}>
+          {location.pathname === '/full-item' ? 
+          <>
+          <div className={styles.counter}>
             <button onClick={handleClickMinus} className={styles.count_button}>-</button>
             <div className={styles.meaning}>{count}</div>
             <button onClick={handleClickPlus} className={styles.count_button}>+</button>
-          </div>}
-          <Button
-            className={'orange'}
-            text={buttunText}
-            onClick={() => handleButtonClick(obj)} />
+          </div>
+          {handleAddToCart && count && <Button
+          className={'orange'}
+          text={buttunText}
+          onClick={() => handleAddToCart(obj, count)} />} 
+          </>:
+          <>
+          {handleChoseItem && <Button
+          className={'orange'}
+          text={buttunText}
+          onClick={() => handleChoseItem(obj.id)} />}
+          </>
+          
+          }
+          
         </div>
 
       </div>

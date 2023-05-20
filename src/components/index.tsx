@@ -6,6 +6,7 @@ export {default as Item} from './Item/index';
 export {default as Skeleton} from './Item/Skeleton';
 export {default as CartItem} from './CartItem/index';
 export {default as CartPopup} from './CartPopup/index';
+export {default as OtherItem} from './OtherItem/index';
 
 
 

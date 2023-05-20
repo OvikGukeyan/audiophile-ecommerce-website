@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import qs from "qs";
 
 type ItemsPropsType = {
-  handleChoseItem: (obj: ItemType) => void;
+  handleChoseItem: (id: number) => void;
   categoryes: CategoryType[]
 }
 
@@ -45,7 +45,7 @@ const Items: React.FC<ItemsPropsType> = ({ handleChoseItem, categoryes }) => {
       </div>
       <div className={styles.items_box}>
         {itemsArray.length ? itemsArray.map((obj, ind) => (<Item
-          handleButtonClick={handleChoseItem}
+          handleChoseItem={handleChoseItem}
           buttunText={'SEE PRODUCT'}
           key={ind}
           obj={obj}

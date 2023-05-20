@@ -19,7 +19,8 @@ type incledesItem = {
     quantity: number;
     item: string;
 };
-type otherType = {
+export type otherType = {
+    id: number
     slug: string;
     name: string;
     image: imageType;
