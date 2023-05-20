@@ -5,6 +5,22 @@ import { ItemType } from "./itemsSlice";
 const getTotalAmount = (obj: CartItemType) => Object.values(obj).reduce((sum, val) => val.price * val.count + sum, 0);
 const getTotalCount = (obj: CartItemType) => Object.values(obj).length;
 
+
+
+const getCartFromLS = () => {
+    const cartData = localStorage.getItem('cart');
+    const cartItems = cartData ? JSON.parse(cartData) : {};
+    const totalAmount = getTotalAmount(cartItems);
+    const totalCount =  getTotalCount(cartItems);
+    return {
+        cartItems,
+        totalAmount,
+        totalCount
+    }
+};
+
+console.log(getCartFromLS())
+
 export type CartItemType = {
     [key: number]: { id: number; name: string; price: number; image: string; count: number }
 }
@@ -17,10 +33,12 @@ interface CartSliceState {
     totalAmount: number
 }
 
+const {cartItems, totalCount, totalAmount} = getCartFromLS();
+
 const initialState: CartSliceState = {
-    cartItems: {},
-    totalCount: 0,
-    totalAmount: 0
+    cartItems,
+    totalCount,
+    totalAmount
 };
 
 const cartSlise = createSlice({

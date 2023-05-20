@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 
 import styles from './Header.module.scss';
 import { CategoryType } from '../../redux/slices/filterSlice';
 import { CartPopup } from '../';
+import { useSelector } from 'react-redux';
+import { selectCart } from '../../redux/slices/cartSlice';
 
 type HeaderPropsType = {
   handleChooseCategory: (category: CategoryType) => void;
@@ -13,7 +15,19 @@ type HeaderPropsType = {
 
 
 const Header: React.FC<HeaderPropsType> = ({ handleChooseCategory, categoryes }) => {
-  
+  const isMounted = useRef(false);
+  const {cartItems} = useSelector(selectCart)
+
+
+
+  useEffect(() => {
+    if (isMounted.current) {
+        const json = JSON.stringify(cartItems);
+        localStorage.setItem('cart', json)
+    }
+    isMounted.current = true;
+}, [cartItems])
+
   return (
     <header className={styles.header}>
       <div className={styles.wrapper}>

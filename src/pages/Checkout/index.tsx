@@ -136,17 +136,16 @@ const Checkout: React.FC = () => {
 
                         <h3>PAYMENT DETAILS</h3>
                         <div className={styles.payment}>
-                            <label>Payment Method:
+                            <p>Payment Method:</p> 
                                 <div>
                                     <label>e-Money
                                         <input  {...register('payment')} type="radio" value="e-Money" />
                                     </label>
 
                                     <label>Cash on Delivery
-                                        <input type="radio" {...register('payment')} value="cash" />
+                                        <input  {...register('payment')} type="radio" value="cash" />
                                     </label>
                                 </div>
-                            </label>
                         </div>
                         {paymentMethod === 'e-Money' &&
                             <div className={styles.input_box}>
@@ -180,7 +179,7 @@ const Checkout: React.FC = () => {
                 <div className={styles.summary_box}>
                     <h2>SUMMARY</h2>
                     <div className={styles.item_box}>
-                    {Object.values(cartItems).length && Object.values(cartItems).map((obj, ind) => (
+                        {Object.values(cartItems).length && Object.values(cartItems).map((obj, ind) => (
                             <CartItem
                                 key={ind}
                                 obj={obj} />
