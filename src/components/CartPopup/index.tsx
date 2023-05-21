@@ -13,7 +13,7 @@ const CartPopup: React.FC = () => {
     const dispatch = useDispatch();
     const [cartOpen, setCartOpen] = useState(false);
     const { cartItems, totalAmount, totalCount } = useSelector(selectCart)
-    const sortRef = useRef<HTMLDivElement>(null);
+    const cartRef = useRef<HTMLDivElement>(null);
     const location = useLocation()
 
     const handleCheckoutClick = () => {
@@ -28,8 +28,8 @@ const CartPopup: React.FC = () => {
     }
 
     const handleOutsideClick = (e: MouseEvent) => {
-        if (sortRef.current) {
-            if (!sortRef.current.contains(e.target as Node)) {
+        if (cartRef.current) {
+            if (!cartRef.current.contains(e.target as Node)) {
                 setCartOpen(false);
                 document.body.style.overflow = "";
             }
@@ -58,7 +58,7 @@ const CartPopup: React.FC = () => {
         <div >
             {location.pathname !== '/checkout' && <img onClick={handleCartOpen} src="./assets/cart-logo.svg" alt="" />}
             {cartOpen && <div onClick={(e) => handleOutsideClick(e)} className={styles.popup_wrapper}>
-                <div ref={sortRef} className={styles.popup}>
+                <div ref={cartRef} className={styles.popup}>
                     <div className={styles.head}>
                         <h3>CART ({totalCount})</h3>
                         <span onClick={handleClearCart}>Remove all</span>

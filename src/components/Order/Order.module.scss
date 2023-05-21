@@ -1,0 +1,122 @@
+.order_wrapper {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .order {
+        position:fixed;
+        width: 520px;
+        height: 550px;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .circle {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background-color: #D87D4A;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        h1 {
+            font-size: 40px;
+            font-weight: 700;
+            line-height: 36px;
+            letter-spacing: 1.1428571939468384px;
+            margin: 0;
+
+        }
+
+        p {
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 25px;
+            letter-spacing: 0px;
+            opacity: 50%;
+            margin: 0;
+        }
+
+        .order_info {
+            width: 100%;
+            height: 170px;
+            border-radius: 10px;
+            display: flex;
+            overflow: hidden;
+
+            .order_items {
+                width: 60%;
+                height: 100%;
+                background-color: #F1F1F1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                .item {
+                    padding: 24px 24px 0 24px;
+                    width: 80%;
+                }
+
+                .items_count {
+                    width: 80%;
+                    border-top: 1px solid #CFCFCF;
+                    text-align: center;
+
+
+                    p {
+                        font-size: 12px;
+                        font-weight: 700;
+                        line-height: 16px;
+                        letter-spacing: -0.2142857164144516px;
+                        opacity: 50%;
+                        margin: 20px 0 20px 0;
+                    }
+                }
+            }
+
+            .order_price {
+                width: 40%;
+                height: 100%;
+                background-color: #000;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+
+                p {
+                    font-size: 20px;
+                    font-weight: 500;
+                    line-height: 25px;
+                    letter-spacing: 0px;
+                    color: #fff;
+                    opacity: 50%;
+                    margin: 0 0 15px 32px;
+                }
+
+                span {
+                    font-size: 25px;
+                    font-weight: 700;
+                    line-height: 25px;
+                    letter-spacing: 0px;
+                    color: #fff;
+                    margin: 0 0 15px 32px;
+
+                }
+            }
+        }
+    }
+
+}

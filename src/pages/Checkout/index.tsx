@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Checkout.module.scss'
 import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
-import { Button, CartItem } from '../../components';
+import { Button, CartItem, Order } from '../../components';
 import { useSelector } from 'react-redux';
 import { selectCart } from '../../redux/slices/cartSlice';
 
@@ -21,10 +21,19 @@ const Checkout: React.FC = () => {
     const vat = (totalAmount / 5).toFixed(2);
     const shiping = totalAmount > 5000 ? 0 : 50;
     const grandTotal = totalAmount + shiping;
+    const [orderOpen, setOrderOpen] = useState(false);
 
     const submitHandler = () => {
         reset();
     }
+
+    const handleOrderClick = () => {
+        setOrderOpen(true);
+        document.body.style.overflow = "hidden";
+    };
+
+    
+    const Items = Object.values(cartItems).length ? Object.values(cartItems) : [];
 
 
     return (
@@ -136,16 +145,16 @@ const Checkout: React.FC = () => {
 
                         <h3>PAYMENT DETAILS</h3>
                         <div className={styles.payment}>
-                            <p>Payment Method:</p> 
-                                <div>
-                                    <label>e-Money
-                                        <input  {...register('payment')} type="radio" value="e-Money" />
-                                    </label>
+                            <p>Payment Method:</p>
+                            <div>
+                                <label>e-Money
+                                    <input  {...register('payment')} type="radio" value="e-Money" />
+                                </label>
 
-                                    <label>Cash on Delivery
-                                        <input  {...register('payment')} type="radio" value="cash" />
-                                    </label>
-                                </div>
+                                <label>Cash on Delivery
+                                    <input  {...register('payment')} type="radio" value="cash" />
+                                </label>
+                            </div>
                         </div>
                         {paymentMethod === 'e-Money' &&
                             <div className={styles.input_box}>
@@ -179,7 +188,7 @@ const Checkout: React.FC = () => {
                 <div className={styles.summary_box}>
                     <h2>SUMMARY</h2>
                     <div className={styles.item_box}>
-                        {Object.values(cartItems).length && Object.values(cartItems).map((obj, ind) => (
+                        {Items.length && Items.map((obj, ind) => (
                             <CartItem
                                 key={ind}
                                 obj={obj} />
@@ -202,7 +211,11 @@ const Checkout: React.FC = () => {
                         <p>GRAND TOTAL</p>
                         <span className={styles.orange}>$ {grandTotal.toLocaleString()}</span>
                     </div>
-                    <Button text={'CONTINUE & PAY'} className={'cart'} />
+                    <Button onClick={handleOrderClick} text={'CONTINUE & PAY'} className={'cart'} />
+                    {orderOpen && <Order Items={Items}
+                    grandTotal={grandTotal}
+                    setOrderOpen={setOrderOpen}
+                    />}
                 </div>
             </div>
         </div>

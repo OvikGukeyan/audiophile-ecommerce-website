@@ -11,7 +11,7 @@ const Skeleton: React.FC = () => {
             backgroundColor="#ededee"
             foregroundColor="#e0e0e0"
         >
-            <rect x="17" y="0" rx="8" ry="8" width="540" height="560" />
+            <rect x="0" y="0" rx="8" ry="8" width="540" height="560" />
             <rect x="700" y="110" rx="8" ry="8" width="200" height="20" />
             <rect x="700" y="140" rx="8" ry="8" width="180" height="88" />
             <rect x="700" y="245" rx="8" ry="8" width="445" height="100" />
