@@ -5,7 +5,7 @@
     margin-bottom: 200px;
 
     .about {
-        width: 75%;
+        width: 1110px;
         display: flex;
         justify-content: space-between;
 
@@ -34,8 +34,35 @@
             }
         }
 
-        img {
+        .about_img {
             border-radius: 8px;
+            background-image: url(../../../public/assets/shared/desktop/image-best-gear.jpg);
+            height: 580px;
+            width: 540px;
+        }
+    }
+
+    @media (max-width: 1150px) {
+
+
+        .about {
+            width: 690px;
+            flex-direction: column-reverse;
+            text-align: center;
+
+            .about_text {
+                width: 575px;
+                margin-top: 20px;
+            }
+
+
+            .about_img {
+                background-image: url(../../../public/assets/shared/tablet/image-best-gear.jpg);
+                height: 300px;
+                width: 100%;
+                background-size: 100%;
+            }
+
         }
     }
 }
@@ -111,7 +138,7 @@
                     height: 24px;
                 }
 
-                
+
             }
         }
     }

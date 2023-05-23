@@ -24,6 +24,11 @@ const Order: React.FC<OrderProps> = ({Items, grandTotal, setOrderOpen}) => {
         }
     };
 
+    const onBackToHome = () => {
+        navigate('/');
+        document.body.style.overflow = "";
+    }
+
 
   return (
     <div onClick={(e) => handleOutsideClick(e)} className={styles.order_wrapper}>
@@ -47,7 +52,7 @@ const Order: React.FC<OrderProps> = ({Items, grandTotal, setOrderOpen}) => {
                                     <span>{grandTotal.toLocaleString()} $</span>
                                 </div>
                             </div>
-                            <Button onClick={() => navigate('/')} text={'BACK TO HOME'} className={'cart'} />
+                            <Button onClick={onBackToHome} text={'BACK TO HOME'} className={'cart'} />
                         </div>
                     </div>
   )

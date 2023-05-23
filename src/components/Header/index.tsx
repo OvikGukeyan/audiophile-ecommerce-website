@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useRef } from 'react';
+import { Link } from "react-router-dom";
 
 import styles from './Header.module.scss';
 import { CategoryType } from '../../redux/slices/filterSlice';

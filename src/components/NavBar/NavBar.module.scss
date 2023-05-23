@@ -3,10 +3,11 @@
     display: flex;
     justify-content: center;
     margin-top: 160px;
+    align-items: center;
 
     .nav_bar {
         margin-bottom: 160px;
-        width: 75%;
+        width: 1110px;
         display: flex;
         justify-content: space-between;
 
@@ -62,6 +63,28 @@
                 }
             }
         }
+    }
+
+    @media (max-width: 1150px) {
+        
+        .nav_bar {
+            width: 690px;
+
+            .item {
+                width: 225px;
+                height: 180px;
+                background-size: 100%;
+
+
+                img {
+                    height: 105px;
+                }
+
+
+
+            }
+        }
+
     }
 
 }
