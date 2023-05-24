@@ -67,7 +67,7 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        margin: 200px 0 200px 0;
+        margin: 200px 0 ;
 
         .grid {
             display: grid;
@@ -163,31 +163,36 @@
                 }
             }
 
-            @media (max-width: 1150px) {
+            
+        }
+
+        @media (max-width: 1150px) {
+            margin: 100px 0 0 0;
+            .grid {
                 width: 690px;
                 height: 1425px;
                 grid-template: auto 320px 320px / 1fr 1fr;
                 gap: 30px;
-
+    
                 .first {
                     flex-direction: column;
                     align-items: center;
                     text-align: center;
                     justify-content: flex-start;
-
+    
                     .text_block {
                         margin: 0;
-
+    
                         h1 {
                             margin-top: 64px;
                         }
-
+    
                         p {
                             margin-bottom: 40px;
                         }
-
+    
                     }
-
+    
                     img {
                         width: 197px;
                         height: 237px;
@@ -195,22 +200,23 @@
                         margin-top: 52px;
                     }
                 }
-
+    
                 .second {
                     background-image: url(../../../public/assets/home/tablet/image-speaker-zx7.jpg);
                     padding-left: 62px;
                 }
-
+    
                 .third {
                     background-image: url(../../../public/assets/home/tablet/image-earphones-yx1.jpg);
                     background-size: 100%;
                 }
-
+    
                 .fourth {
                     padding-left: 40px;
                 }
-
             }
+           
+
         }
     }
 

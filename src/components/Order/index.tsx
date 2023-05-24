@@ -1,6 +1,5 @@
 import React, { useRef } from 'react'
 import styles from "./Order.module.scss";
-import Items from '../../pages/Items';
 import CartItem from '../CartItem';
 import Button from '../Button';
 import { useNavigate } from 'react-router-dom';

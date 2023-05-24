@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import styles from './Item.module.scss'
@@ -18,6 +18,35 @@ type ItemPropsType = {
 
 const Item: React.FC<ItemPropsType> = ({ obj, ind, handleAddToCart, handleChoseItem, buttunText, count, handleClickPlus, handleClickMinus }) => {
   const location = useLocation();
+
+
+  // const [imageSize, setImageSize] = useState('');
+
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     const screenSize = window.innerWidth;
+  //     const newImageUrl = screenSize <= 1150 ? 'tablet' : 'desktop' ;
+  //     setImageSize(newImageUrl);
+  //   };
+
+  //   // Задайте начальное изображение при первой загрузке компонента
+  //   handleResize();
+
+  //   // Добавьте обработчик изменения размера окна при монтировании компонента
+  //   window.addEventListener('resize', handleResize);
+
+  //   // Удалите обработчик изменения размера окна при размонтировании компонента
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize);
+  //   };
+  // }, []);
+
+  
+
+
+
+
+
 
   return (
     <div className={`${styles.item_wrapper} ${ind && ind % 2 !== 0 && styles.even}`}>
