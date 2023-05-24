@@ -74,40 +74,20 @@
     justify-content: center;
 
     .footer {
-        width: 75%;
+        width: 1110px;
         margin: 75px 0 50px 0;
         display: flex;
         justify-content: space-between;
+        flex-direction: column;
 
-        .footer_text {
-            width: 540px;
+        .footer_head {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
 
             img {
                 margin-bottom: 35px;
             }
-
-            p,
-            span {
-                font-size: 15px;
-                font-weight: 500;
-                line-height: 25px;
-                letter-spacing: 0px;
-                color: #fff;
-                opacity: 50%;
-            }
-
-            p {
-                margin-bottom: 50px;
-            }
-
-        }
-
-        .footer_links {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: flex-end;
-            height: 150px;
 
             nav {
                 ul {
@@ -121,6 +101,7 @@
                     line-height: 141%;
                     color: #fff;
                     list-style: none;
+                    margin: 0;
 
                     a {
                         text-decoration: none;
@@ -129,16 +110,70 @@
                 }
             }
 
+
+
+        }
+
+        .footer_main {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+
+            .footer_text {
+
+                width: 540px;
+
+                p,
+                span {
+                    font-size: 15px;
+                    font-weight: 500;
+                    line-height: 25px;
+                    letter-spacing: 0px;
+                    color: #fff;
+                    opacity: 50%;
+                }
+
+                p {
+                    margin-bottom: 50px;
+                }
+            }
+
+
             .social_media {
                 width: 120px;
                 display: flex;
                 justify-content: space-between;
+                margin-bottom: 60px;
 
                 a {
                     height: 24px;
                 }
 
 
+
+            }
+
+
+
+        }
+
+        @media (max-width: 1150px) {
+            width: 690px;
+
+            .footer_head {
+                flex-direction: column;
+
+                nav {
+                    ul {
+                        padding: 0;
+                    }
+                }
+            }
+
+            .footer_main {
+                .social_media {
+                    margin: 0;
+                }
             }
         }
     }
