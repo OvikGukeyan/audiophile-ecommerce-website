@@ -20,26 +20,26 @@ const Item: React.FC<ItemPropsType> = ({ obj, ind, handleAddToCart, handleChoseI
   const location = useLocation();
 
 
-  // const [imageSize, setImageSize] = useState('');
+  const [ItemImage, setItemImage] = useState('');
 
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     const screenSize = window.innerWidth;
-  //     const newImageUrl = screenSize <= 1150 ? 'tablet' : 'desktop' ;
-  //     setImageSize(newImageUrl);
-  //   };
+  useEffect(() => {
+    const handleResize = () => {
+      const screenSize = window.innerWidth;
+      const newImageUrl = screenSize <= 1150 ? obj.image.tabletGor : obj.image.desktop;
+      setItemImage(newImageUrl);
+    };
 
-  //   // Задайте начальное изображение при первой загрузке компонента
-  //   handleResize();
+    // Задайте начальное изображение при первой загрузке компонента
+    handleResize();
 
-  //   // Добавьте обработчик изменения размера окна при монтировании компонента
-  //   window.addEventListener('resize', handleResize);
+    // Добавьте обработчик изменения размера окна при монтировании компонента
+    window.addEventListener('resize', handleResize);
 
-  //   // Удалите обработчик изменения размера окна при размонтировании компонента
-  //   return () => {
-  //     window.removeEventListener('resize', handleResize);
-  //   };
-  // }, []);
+    // Удалите обработчик изменения размера окна при размонтировании компонента
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   
 
@@ -50,7 +50,7 @@ const Item: React.FC<ItemPropsType> = ({ obj, ind, handleAddToCart, handleChoseI
 
   return (
     <div className={`${styles.item_wrapper} ${ind && ind % 2 !== 0 && styles.even}`}>
-      <img src={obj.image.desktop} alt="" />
+      <img src={ItemImage} alt="" />
       <div className={styles.item_info}>
         {obj.new && <span>NEW PRODUCT</span>}
         <h1>{obj.name.toUpperCase()}</h1>

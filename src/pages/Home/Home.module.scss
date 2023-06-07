@@ -12,7 +12,7 @@
         background-repeat: no-repeat;
 
         .home_head {
-            width: 75%;
+            width: 1110px;
             height: 630px;
 
             .text_block {
@@ -45,29 +45,18 @@
                 }
             }
 
-            @media (max-width: 1150px) {
-                width: 90%;
-                display: flex;
-                justify-content: center;
-                text-align: center;
-
-            }
-
-        }
-
-        @media (max-width: 1150px) {
-            background-image: url(../../../public/assets/home/tablet/image-header.jpg);
-            background-size: 100%;
 
 
         }
+
+
     }
 
     .grid_wrapper {
         width: 100%;
         display: flex;
         justify-content: center;
-        margin: 200px 0 ;
+        margin: 200px 0;
 
         .grid {
             display: grid;
@@ -107,6 +96,7 @@
                         font-weight: 500;
                         line-height: 25px;
                         letter-spacing: 0px;
+                        opacity: 0.5;
 
                     }
                 }
@@ -163,36 +153,55 @@
                 }
             }
 
-            
+
         }
 
-        @media (max-width: 1150px) {
+
+
+
+    }
+
+    @media (max-width: 1150px) {
+        .home_head_wrapper {
+            background-image: url(../../../public/assets/home/tablet/image-header.jpg);
+            background-size: cover;
+
+            .home_head {
+                width: 990px;
+                display: flex;
+                justify-content: center;
+                text-align: center;
+            }
+        }
+
+        .grid_wrapper {
             margin: 100px 0 0 0;
+
             .grid {
                 width: 690px;
                 height: 1425px;
                 grid-template: auto 320px 320px / 1fr 1fr;
                 gap: 30px;
-    
+
                 .first {
                     flex-direction: column;
                     align-items: center;
                     text-align: center;
                     justify-content: flex-start;
-    
+
                     .text_block {
                         margin: 0;
-    
+
                         h1 {
                             margin-top: 64px;
                         }
-    
+
                         p {
                             margin-bottom: 40px;
                         }
-    
+
                     }
-    
+
                     img {
                         width: 197px;
                         height: 237px;
@@ -200,23 +209,97 @@
                         margin-top: 52px;
                     }
                 }
-    
+
                 .second {
                     background-image: url(../../../public/assets/home/tablet/image-speaker-zx7.jpg);
-                    padding-left: 62px;
+                    background-size: cover;
+                    padding-left: 40px;
                 }
-    
+
                 .third {
                     background-image: url(../../../public/assets/home/tablet/image-earphones-yx1.jpg);
-                    background-size: 100%;
+                    background-size: cover;
+
                 }
-    
+
                 .fourth {
                     padding-left: 40px;
                 }
             }
-           
 
+
+
+        }
+
+
+    }
+
+    @media (max-width: 700px) {
+        .home_head_wrapper {
+            background-image: url(../../../public/assets/home/mobile/image-header.jpg);
+
+            .home_head {
+                width: 330px;
+            }
+        }
+
+        .grid_wrapper {
+
+            .grid {
+                width: 330px;
+                grid-template: 600px 320px 200px 200px / 330px;
+
+                .first {
+                    grid-area: 1 / 1 / span 1 / span 1;
+
+                    .text_block {
+                        h1 {
+                            font-size: 36px;
+                            font-weight: 700;
+                            line-height: 40px;
+                            letter-spacing: 1.2857142686843872px;
+                            margin: 32px 0 24px 0;
+
+                        }
+
+                        p {
+                            font-size: 15px;
+                            font-weight: 500;
+                            line-height: 25px;
+                            letter-spacing: 0px;
+
+                        }
+                    }
+
+
+
+                    img {
+                        height: 207px;
+                        width: 172px;
+                    }
+
+                }
+
+                .second {
+                    grid-area: 2 / 1 / span 1 / span 1;
+                    background-image: url(../../../public/assets/home/mobile/image-speaker-zx7.jpg);
+
+
+                }
+
+                .third {
+                    grid-area: 3 / 1 / span 1 / span 1;
+                    background-image: url(../../../public/assets/home/mobile/image-earphones-yx1.jpg);
+
+
+                }
+
+                .fourth {
+                    grid-area: 4 / 1 / span 1 / span 1;
+
+                }
+
+            }
         }
     }
 

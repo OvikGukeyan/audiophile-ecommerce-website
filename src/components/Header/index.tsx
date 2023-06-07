@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import { Link } from "react-router-dom";
 
 import styles from './Header.module.scss';
@@ -10,14 +10,15 @@ import { selectCart } from '../../redux/slices/cartSlice';
 type HeaderPropsType = {
   handleChooseCategory: (category: CategoryType) => void;
   categoryes: CategoryType[];
+  navBarOpen: boolean;
+  setNavBarOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 
 
-const Header: React.FC<HeaderPropsType> = ({ handleChooseCategory, categoryes }) => {
+const Header: React.FC<HeaderPropsType> = ({ navBarOpen, setNavBarOpen, handleChooseCategory, categoryes }) => {
   const isMounted = useRef(false);
   const { cartItems } = useSelector(selectCart)
-  const [navBarOpen, setNavBarOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
 
 

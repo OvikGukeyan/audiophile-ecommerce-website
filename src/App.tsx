@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -16,13 +16,18 @@ const App: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const [navBarOpen, setNavBarOpen] = useState(false);
   const categoryes = [
     { name: 'headphones', image: "./assets/shared/desktop/image-headphones.png" },
     { name: 'speakers', image: "./assets/shared/desktop/image-speakers.png" },
     { name: 'earphones', image: "./assets/shared/desktop/image-earphones.png" }];
 
   const handleChooseCategory = (category: CategoryType | null) => {
-    dispatch(setCategory(category))
+    dispatch(setCategory(category));
+    setNavBarOpen(false);
+    console.log(navBarOpen);
+    document.body.style.overflow = "";
+
   };
 
   const handleChoseItem = (id: number) => {
@@ -35,7 +40,10 @@ const App: React.FC = () => {
     <div className="App">
       <Header
         handleChooseCategory={handleChooseCategory}
-        categoryes={categoryes} />
+        categoryes={categoryes}
+        navBarOpen={navBarOpen}
+        setNavBarOpen={setNavBarOpen}
+         />
       <Routes>
         <Route path='' element={<Home
           handleChoseItem={handleChoseItem}

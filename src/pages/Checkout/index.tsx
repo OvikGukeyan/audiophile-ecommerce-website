@@ -182,7 +182,7 @@ const Checkout: React.FC = () => {
                             </div>
                         }
 
-                        <input type="submit" />
+                        {/* <input type="submit" /> */}
                     </form>
                 </div>
                 <div className={styles.summary_box}>

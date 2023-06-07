@@ -69,7 +69,7 @@
 
     @media (max-width: 1150px) {
         margin-top: 90px;
-        
+
         .nav_bar {
             width: 690px;
             margin: 50px 0 60px 0;
@@ -89,6 +89,28 @@
             }
         }
 
+    }
+
+    @media (max-width: 700px) {
+
+
+        .nav_bar {
+            width: 330px;
+            flex-direction: column;
+            align-items: center;
+
+            .item {
+                margin: 0 0 30px 0;
+                width: 330px;
+                height: 240px;
+
+                img {
+                    height: 150px;
+                }
+               
+            }
+
+        }
     }
 
 }

@@ -13,7 +13,9 @@ export const fetchItems = createAsyncThunk('itema/fetchItems', async (category?:
 export type imageType = {
     mobile: string;
     tablet: string;
-    desktop: string
+    desktop: string;
+    tabletGor: string;
+
 };
 type incledesItem = {
     quantity: number;

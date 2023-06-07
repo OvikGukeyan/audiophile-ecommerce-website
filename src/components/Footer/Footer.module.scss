@@ -66,6 +66,36 @@
 
         }
     }
+
+    @media (max-width: 700px) {
+        .about {
+            width: 330px;
+
+            .about_img {
+                background-image: url(../../../public/assets/shared/mobile/image-best-gear.jpg);
+
+            }
+
+            .about_text {
+                width: 330px;
+
+                h2 {
+                    font-size: 28px;
+                    font-weight: 700;
+                    line-height: 38px;
+                    letter-spacing: 1px;
+                }
+
+                p {
+                    font-size: 15px;
+                    font-weight: 500;
+                    line-height: 25px;
+                    letter-spacing: 0px;
+
+                }
+            }
+        }
+    }
 }
 
 .footer_wrapper {
@@ -177,5 +207,46 @@
                 }
             }
         }
+
+        @media (max-width: 700px) {
+            width: 330px;
+
+            .footer_head {
+                align-items: center;
+
+                nav {
+                    ul {
+                        flex-direction: column;
+                        align-items: center;
+                        width: 100%;
+
+                        li {
+                            margin-bottom: 16px;
+                            font-size: 13px;
+                            font-weight: 700;
+                            line-height: 25px;
+                            letter-spacing: 2px;
+
+                        }
+                    }
+                }
+            }
+
+            .footer_main {
+                text-align: center;
+                flex-direction: column;
+                align-items: center;
+
+                .footer_text {
+                    width: 330px;
+                    margin-bottom: 40px;
+                }
+
+
+            }
+
+        }
+
+
     }
 }

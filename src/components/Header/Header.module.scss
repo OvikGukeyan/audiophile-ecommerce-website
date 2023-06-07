@@ -37,10 +37,25 @@
             }
         }
 
-        
-        @media (max-width: 1150px) {
 
-            width: 990px;
+
+    }
+
+
+
+    .nav_bar_wrapper {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.3);
+
+
+    }
+
+    @media (max-width: 1150px) {
+        .wrapper {
             margin: 0 40px;
 
             .hamburger {
@@ -60,23 +75,25 @@
                 }
             }
 
-
         }
 
 
+
     }
 
-    .nav_bar_wrapper {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        left: 0;
-        top: 0;
-        background-color: rgba(0, 0, 0, 0.3);
+    @media (max-width: 700px) {
+        .wrapper {
+            a {
+                .logo {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 0;
+                }
+            }
+            
+        }
 
-       
     }
-
-
 
 }
