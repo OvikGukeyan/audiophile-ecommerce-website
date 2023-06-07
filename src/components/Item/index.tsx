@@ -25,7 +25,14 @@ const Item: React.FC<ItemPropsType> = ({ obj, ind, handleAddToCart, handleChoseI
   useEffect(() => {
     const handleResize = () => {
       const screenSize = window.innerWidth;
-      const newImageUrl = screenSize <= 1150 ? obj.image.tabletGor : obj.image.desktop;
+      let newImageUrl;
+      if (screenSize <= 700) {
+        newImageUrl = obj.image.mobile
+      } else if (screenSize <= 1150) {
+        newImageUrl = obj.image.tabletGor
+      } else {
+        newImageUrl = obj.image.desktop
+      }
       setItemImage(newImageUrl);
     };
 
@@ -41,7 +48,7 @@ const Item: React.FC<ItemPropsType> = ({ obj, ind, handleAddToCart, handleChoseI
     };
   }, []);
 
-  
+
 
 
 
@@ -57,27 +64,27 @@ const Item: React.FC<ItemPropsType> = ({ obj, ind, handleAddToCart, handleChoseI
         <p>{obj.description}</p>
         {location.pathname === '/full-item' && <h3>$ {obj.price}</h3>}
         <div className={styles.button_box}>
-          {location.pathname === '/full-item' ? 
-          <>
-          <div className={styles.counter}>
-            <button onClick={handleClickMinus} className={styles.count_button}>-</button>
-            <div className={styles.meaning}>{count}</div>
-            <button onClick={handleClickPlus} className={styles.count_button}>+</button>
-          </div>
-          {handleAddToCart && count && <Button
-          className={'orange'}
-          text={buttunText}
-          onClick={() => handleAddToCart(obj, count)} />} 
-          </>:
-          <>
-          {handleChoseItem && <Button
-          className={'orange'}
-          text={buttunText}
-          onClick={() => handleChoseItem(obj.id)} />}
-          </>
-          
+          {location.pathname === '/full-item' ?
+            <>
+              <div className={styles.counter}>
+                <button onClick={handleClickMinus} className={styles.count_button}>-</button>
+                <div className={styles.meaning}>{count}</div>
+                <button onClick={handleClickPlus} className={styles.count_button}>+</button>
+              </div>
+              {handleAddToCart && count && <Button
+                className={'orange'}
+                text={buttunText}
+                onClick={() => handleAddToCart(obj, count)} />}
+            </> :
+            <>
+              {handleChoseItem && <Button
+                className={'orange'}
+                text={buttunText}
+                onClick={() => handleChoseItem(obj.id)} />}
+            </>
+
           }
-          
+
         </div>
 
       </div>
