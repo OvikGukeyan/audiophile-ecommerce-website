@@ -19,7 +19,6 @@ const getCartFromLS = () => {
     }
 };
 
-console.log(getCartFromLS())
 
 export type CartItemType = {
     [key: number]: { id: number; name: string; price: number; image: string; count: number }
@@ -46,7 +45,6 @@ const cartSlise = createSlice({
     initialState,
     reducers: {
         addCartItem: (state, action) => {
-            console.log(action.payload)
             !state.cartItems[action.payload.id] ?
                 state.cartItems[action.payload.id] = action.payload :
                 state.cartItems[action.payload.id].count = state.cartItems[action.payload.id].count + action.payload.count;

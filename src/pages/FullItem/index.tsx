@@ -13,12 +13,21 @@ type FullItemPropsType = {
     handleChoseItem: (id: number) => void
 }
 
+type Galary = {
+    first: string;
+    second: string;
+    third: string
+}
+
 const FullItem: React.FC<FullItemPropsType> = ({ handleChoseItem }) => {
     const [count, setCount] = useState(1);
+    const [gallery, setGalery] = useState<Galary>();
     const [currentItem, setCurrentItem] = useState<ItemType>();
     const { currentItemId } = useSelector(selectFilters);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    
 
     useEffect(() => {
         axios.get(`https://635fcafd3e8f65f283bba8bc.mockapi.io/audiophile?id=${currentItemId}`)
@@ -38,6 +47,47 @@ const FullItem: React.FC<FullItemPropsType> = ({ handleChoseItem }) => {
     useEffect(() => {
         navigate(`/full-item?id=${currentItemId}`);
     }, [currentItemId]);
+
+
+    useEffect(() => {
+        const handleResize = () => {
+          const screenSize = window.innerWidth;
+          let newGalery:any = {}
+          if(currentItem) {
+            if (screenSize <= 700 ) {
+                newGalery.first = currentItem.gallery.first.mobile;
+                newGalery.second = currentItem.gallery.second.mobile;
+                newGalery.third = currentItem.gallery.third.mobile;
+    
+              } else if (screenSize <= 1150  ) {
+    
+                newGalery.first = currentItem.gallery.first.tablet;
+                newGalery.second = currentItem.gallery.second.tablet;
+                newGalery.third = currentItem.gallery.third.tablet;
+              } else {
+    
+                newGalery.first = currentItem.gallery.first.desktop;
+                newGalery.second = currentItem.gallery.second.desktop;
+                newGalery.third = currentItem.gallery.third.desktop;
+              }
+          }
+          
+          
+          setGalery(newGalery);
+        };
+    
+        // Задайте начальное изображение при первой загрузке компонента
+        handleResize();
+    
+        // Добавьте обработчик изменения размера окна при монтировании компонента
+        window.addEventListener('resize', handleResize);
+    
+        // Удалите обработчик изменения размера окна при размонтировании компонента
+        return () => {
+          window.removeEventListener('resize', handleResize);
+        };
+      }, [currentItem]);
+    
 
     const handleClickPlus = () => {
         setCount(prev => prev + 1)
@@ -69,6 +119,7 @@ const FullItem: React.FC<FullItemPropsType> = ({ handleChoseItem }) => {
                 {currentItem ?
                     <>
                         <Item
+                            itemClass={'full'}
                             handleClickMinus={handleClickMinus}
                             handleClickPlus={handleClickPlus}
                             count={count}
@@ -91,9 +142,9 @@ const FullItem: React.FC<FullItemPropsType> = ({ handleChoseItem }) => {
                             </div>
                         </div>
                         <div className={styles.image_box}>
-                            <img className={styles.first} src={currentItem.gallery.first.desktop} alt="" />
-                            <img className={styles.second} src={currentItem.gallery.second.desktop} alt="" />
-                            <img className={styles.third} src={currentItem.gallery.third.desktop} alt="" />
+                            <img className={styles.first} src={gallery && gallery.first} alt="" />
+                            <img className={styles.second} src={gallery && gallery.second} alt="" />
+                            <img className={styles.third} src={gallery && gallery.third} alt="" />
                         </div>
                         <div className={styles.also_like}>
                             <h2>YOU MAY ALSO LIKE</h2>

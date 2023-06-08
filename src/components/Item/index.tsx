@@ -6,17 +6,18 @@ import Button from '../Button';
 import { ItemType } from '../../redux/slices/itemsSlice';
 
 type ItemPropsType = {
+  itemClass?: string;
   count?: number;
   handleClickMinus?: () => void;
   handleClickPlus?: () => void;
   handleAddToCart?: (obj: ItemType, count: number) => void;
   handleChoseItem?: (id: number) => void;
   obj: ItemType;
-  ind?: number
-  buttunText: string
+  ind?: number;
+  buttunText: string;
 }
 
-const Item: React.FC<ItemPropsType> = ({ obj, ind, handleAddToCart, handleChoseItem, buttunText, count, handleClickPlus, handleClickMinus }) => {
+const Item: React.FC<ItemPropsType> = ({ obj, ind, handleAddToCart, handleChoseItem, buttunText, count, handleClickPlus, handleClickMinus, itemClass }) => {
   const location = useLocation();
 
 
@@ -28,7 +29,9 @@ const Item: React.FC<ItemPropsType> = ({ obj, ind, handleAddToCart, handleChoseI
       let newImageUrl;
       if (screenSize <= 700) {
         newImageUrl = obj.image.mobile
-      } else if (screenSize <= 1150) {
+      } else if (screenSize <= 1150 && location.pathname === '/full-item') {
+        newImageUrl = obj.image.tablet
+      } else if (screenSize <= 1150 && location.pathname === '/items') {
         newImageUrl = obj.image.tabletGor
       } else {
         newImageUrl = obj.image.desktop
@@ -46,7 +49,7 @@ const Item: React.FC<ItemPropsType> = ({ obj, ind, handleAddToCart, handleChoseI
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [obj]);
 
 
 
@@ -56,7 +59,7 @@ const Item: React.FC<ItemPropsType> = ({ obj, ind, handleAddToCart, handleChoseI
 
 
   return (
-    <div className={`${styles.item_wrapper} ${ind && ind % 2 !== 0 && styles.even}`}>
+    <div className={`${styles.item_wrapper} ${ind && ind % 2 !== 0 && styles.even} ${itemClass === 'full' && styles.full}`}>
       <img src={ItemImage} alt="" />
       <div className={styles.item_info}>
         {obj.new && <span>NEW PRODUCT</span>}

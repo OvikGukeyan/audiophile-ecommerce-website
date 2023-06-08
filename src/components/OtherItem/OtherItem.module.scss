@@ -17,4 +17,14 @@
         margin-bottom: 32px;
     }
 
+
+    @media (max-width: 1150px) {
+        width: 223px;
+        overflow: hidden;
+    }
+
+    @media (max-width: 700px) {
+        margin-bottom: 30px;
+        width: 330px;
+    }
 }

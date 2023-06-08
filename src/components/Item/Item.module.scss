@@ -130,3 +130,31 @@
         flex-direction: column;
     }
 }
+
+.full {
+    @media (max-width: 1150px) {
+        flex-direction: row;
+        
+        img {
+            width: 280px;
+    
+        }
+
+        .item_info {
+            width: 340px;
+            height: 100%;
+            align-items: flex-start;
+            text-align: left;
+    
+        }
+    }
+
+    @media (max-width: 700px) {
+        flex-direction: column;
+
+        img {
+            width: 330px;
+        }
+    }
+    
+}

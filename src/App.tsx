@@ -25,7 +25,6 @@ const App: React.FC = () => {
   const handleChooseCategory = (category: CategoryType | null) => {
     dispatch(setCategory(category));
     setNavBarOpen(false);
-    console.log(navBarOpen);
     document.body.style.overflow = "";
 
   };
