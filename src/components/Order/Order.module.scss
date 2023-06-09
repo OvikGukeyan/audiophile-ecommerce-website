@@ -10,7 +10,7 @@
     justify-content: center;
 
     .order {
-        position:fixed;
+        position: fixed;
         width: 520px;
         height: 550px;
         background-color: #fff;
@@ -115,6 +115,53 @@
                     margin: 0 0 15px 32px;
 
                 }
+            }
+        }
+    }
+
+    @media (max-width: 700px) {
+        .order {
+            width: 270px;
+            padding: 30px;
+
+            h1 {
+                font-size: 24px;
+                font-weight: 700;
+                line-height: 28px;
+                letter-spacing: 0.8571428656578064px;
+
+            }
+
+            .order_info {
+                flex-direction: column;
+                height: 230px;
+                margin-bottom: 20px;
+
+                .order_items {
+                    width: 100%;
+                    height: 60%;
+
+                    .items_count {
+                        p {
+                            margin: 10px 0;
+                        }
+                    }
+                }
+
+                .order_price {
+                    width: 100%;
+                    height: 40%;
+
+                    p {
+                        font-size: 15px;
+                        margin: 10px 0 10px 32px;
+                    }
+
+                    span {
+                        font-size: 18px;
+                    }
+                }
+
             }
         }
     }
