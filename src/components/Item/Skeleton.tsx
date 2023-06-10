@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import ContentLoader from 'react-content-loader';
+import { useLocation } from 'react-router-dom';
 
 
 
 
 const Skeleton: React.FC = () => {
     const [loader, setLoader] = useState<JSX.Element>()
-
+    const location = useLocation();
 
     useEffect(() => {
         const handleResize = () => {
@@ -28,7 +29,23 @@ const Skeleton: React.FC = () => {
             <rect x="15" y="480" rx="6" ry="6" width="300" height="70" /> 
             <rect x="85" y="580" rx="6" ry="6" width="160" height="50" />
           </ContentLoader>
-          } else if (screenSize <= 1150) {
+          } else if (screenSize <= 1150 && location.pathname === '/full-item') {
+            newLoader =    <ContentLoader 
+            speed={2}
+            width={690}
+            height={700}
+            viewBox="0 0 690 700"
+            backgroundColor="#ededee"
+            foregroundColor="#e0e0e0"
+          >
+            <rect x="0" y="0" rx="6" ry="6" width="280" height="480" /> 
+            <rect x="350" y="75" rx="6" ry="6" width="200" height="50" /> 
+            <rect x="350" y="185" rx="6" ry="6" width="250" height="90" /> 
+            <rect x="480" y="370" rx="6" ry="6" width="160" height="50" /> 
+            <rect x="350" y="370" rx="6" ry="6" width="120" height="50" /> 
+            <rect x="350" y="310" rx="6" ry="6" width="100" height="25" />
+          </ContentLoader>
+          }else if (screenSize <= 1150) {
             newLoader =   <ContentLoader 
             speed={2}
             width={690}
@@ -42,7 +59,8 @@ const Skeleton: React.FC = () => {
             <rect x="120" y="480" rx="6" ry="6" width="450" height="70" /> 
             <rect x="265" y="600" rx="6" ry="6" width="160" height="50" />
           </ContentLoader>
-          } else {
+          }
+           else {
             newLoader = <ContentLoader
             speed={2}
             width={1174}
