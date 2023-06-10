@@ -44,7 +44,7 @@ const Items: React.FC<ItemsPropsType> = ({ handleChoseItem, categoryes }) => {
         <h2>{category?.name.toUpperCase()}</h2>
       </div>
       <div className={styles.items_box}>
-        {!isLoaded ? itemsArray.map((obj, ind) => (<Item
+        {isLoaded ? itemsArray.map((obj, ind) => (<Item
           handleChoseItem={handleChoseItem}
           buttunText={'SEE PRODUCT'}
           key={ind}
