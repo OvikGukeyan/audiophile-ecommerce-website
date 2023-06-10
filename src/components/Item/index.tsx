@@ -39,13 +39,10 @@ const Item: React.FC<ItemPropsType> = ({ obj, ind, handleAddToCart, handleChoseI
       setItemImage(newImageUrl);
     };
 
-    // Задайте начальное изображение при первой загрузке компонента
     handleResize();
 
-    // Добавьте обработчик изменения размера окна при монтировании компонента
     window.addEventListener('resize', handleResize);
 
-    // Удалите обработчик изменения размера окна при размонтировании компонента
     return () => {
       window.removeEventListener('resize', handleResize);
     };

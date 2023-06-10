@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../redux/store';
 import styles from './Items.module.scss';
 import { Item, Skeleton } from '../../components';
-import { ItemType, fetchItems, selectItems } from '../../redux/slices/itemsSlice';
+import { fetchItems, selectItems } from '../../redux/slices/itemsSlice';
 import { CategoryType, selectFilters, setCategory } from '../../redux/slices/filterSlice';
 import { useNavigate } from 'react-router-dom';
 import qs from "qs";
@@ -44,7 +44,7 @@ const Items: React.FC<ItemsPropsType> = ({ handleChoseItem, categoryes }) => {
         <h2>{category?.name.toUpperCase()}</h2>
       </div>
       <div className={styles.items_box}>
-        {isLoaded ? itemsArray.map((obj, ind) => (<Item
+        {!isLoaded ? itemsArray.map((obj, ind) => (<Item
           handleChoseItem={handleChoseItem}
           buttunText={'SEE PRODUCT'}
           key={ind}

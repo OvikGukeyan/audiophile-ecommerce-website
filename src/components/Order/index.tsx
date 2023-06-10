@@ -42,9 +42,9 @@ const Order: React.FC<OrderProps> = ({Items, grandTotal, setOrderOpen}) => {
                                     <div className={styles.item}>
                                         {Items && <CartItem obj={Items[0]} />}
                                     </div>
-                                    <div className={styles.items_count}>
+                                    {Items.length > 1 && <div className={styles.items_count}>
                                         <p>and {Items.length - 1} other item(s)</p>
-                                    </div>
+                                    </div>}
                                 </div>
                                 <div className={styles.order_price}>
                                     <p>GRAND TOTAL</p>
