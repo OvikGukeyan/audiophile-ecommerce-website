@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { Button, CartItem, Order } from '../../components';
 import { useSelector } from 'react-redux';
-import { selectCart } from '../../redux/slices/cartSlice';
+import { selectCart } from '../../redux/slices/cart/cartSlice';
 
 const Checkout: React.FC = () => {
     const {

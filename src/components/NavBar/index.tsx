@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './NavBar.module.scss';
-import { CategoryType } from '../../redux/slices/filterSlice';
+import { CategoryType } from '../../redux/slices/filter/types';
 
 type NavBarPropsType = {
     handleChooseCategory: (category: CategoryType) => void;
@@ -14,7 +14,7 @@ const NavBar: React.FC<NavBarPropsType> = ({ handleChooseCategory, categoryes })
         <div className={styles.nav_bar_wrapper}>
             <div className={styles.nav_bar}>
                 {categoryes.map(category => (
-                    <Link to='/items'>
+                    <Link key={category.name} to='/items'>
                         <div onClick={() => handleChooseCategory(category)} className={styles.item}>
                             <img src={category.image} alt="" />
                             <h2>{category.name.toUpperCase()}</h2>

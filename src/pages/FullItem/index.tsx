@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 import styles from './FullItem.module.scss'
 import { Item, OtherItem, Skeleton } from '../../components';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectFilters, setCurrentItemId } from '../../redux/slices/filterSlice';
-import { ItemType } from '../../redux/slices/itemsSlice';
-import axios from 'axios';
-import { addCartItem } from '../../redux/slices/cartSlice';
+import { selectFilters, setCurrentItemId } from '../../redux/slices/filter/filterSlice';
+import { addCartItem } from '../../redux/slices/cart/cartSlice';
+import { ItemType } from '../../redux/slices/items/types';
 
 type FullItemPropsType = {
     handleChoseItem: (id: number) => void
@@ -151,6 +152,7 @@ const FullItem: React.FC<FullItemPropsType> = ({ handleChoseItem }) => {
                             <div className={styles.items}>
                                 {currentItem.others.map((obj) => (
                                     <OtherItem
+                                        key={obj.id}
                                         handleChoseItem={handleChoseItem}
                                         obj={obj} />
                                 ))}

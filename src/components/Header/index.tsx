@@ -1,11 +1,11 @@
-import React, { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 import styles from './Header.module.scss';
-import { CategoryType } from '../../redux/slices/filterSlice';
 import { CartPopup, NavBar } from '../';
-import { useSelector } from 'react-redux';
-import { selectCart } from '../../redux/slices/cartSlice';
+import { selectCart } from '../../redux/slices/cart/cartSlice';
+import { CategoryType } from '../../redux/slices/filter/types';
 
 type HeaderPropsType = {
   handleChooseCategory: (category: CategoryType) => void;
@@ -48,7 +48,7 @@ const Header: React.FC<HeaderPropsType> = ({ navBarOpen, setNavBarOpen, handleCh
 
   return (
     <header className={styles.header}>
-      <div  className={styles.wrapper}>
+      <div className={styles.wrapper}>
         <img onClick={handleHamburgerClick} className={styles.hamburger} src="./assets/shared/tablet/icon-hamburger.svg" alt="" />
         <Link to='/'>
           <div className={styles.logo}>
@@ -62,7 +62,7 @@ const Header: React.FC<HeaderPropsType> = ({ navBarOpen, setNavBarOpen, handleCh
               <li>HOME</li>
             </Link>
             {categoryes.map((category) => (
-              <Link to='/items'>
+              <Link key={category.name} to='/items'>
                 <li onClick={() => handleChooseCategory(category)}>{category.name.toUpperCase()}</li>
               </Link>
             ))}

@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 import styles from './Item.module.scss'
 import Button from '../Button';
-import { ItemType } from '../../redux/slices/itemsSlice';
+import { ItemType } from '../../redux/slices/items/types';
 
 type ItemPropsType = {
   itemClass?: string;

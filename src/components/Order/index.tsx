@@ -1,8 +1,9 @@
-import React, { useRef } from 'react'
+import React, { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import styles from "./Order.module.scss";
 import CartItem from '../CartItem';
 import Button from '../Button';
-import { useNavigate } from 'react-router-dom';
 
 type OrderProps = {
     Items: { id: number; name: string; price: number; image: string; count: number; }[];

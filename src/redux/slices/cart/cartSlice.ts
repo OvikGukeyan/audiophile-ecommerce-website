@@ -1,36 +1,9 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../store";
-import { ItemType } from "./itemsSlice";
+import {  createSlice } from "@reduxjs/toolkit";
 
-const getTotalAmount = (obj: CartItemType) => Object.values(obj).reduce((sum, val) => val.price * val.count + sum, 0);
-const getTotalCount = (obj: CartItemType) => Object.values(obj).length;
+import { RootState } from "../../store";
+import { CartSliceState } from "./types";
+import { getCartFromLS, getTotalAmount, getTotalCount } from "./utils";
 
-
-
-const getCartFromLS = () => {
-    const cartData = localStorage.getItem('cart');
-    const cartItems = cartData ? JSON.parse(cartData) : {};
-    const totalAmount = getTotalAmount(cartItems);
-    const totalCount =  getTotalCount(cartItems);
-    return {
-        cartItems,
-        totalAmount,
-        totalCount
-    }
-};
-
-
-export type CartItemType = {
-    [key: number]: { id: number; name: string; price: number; image: string; count: number }
-}
-
-
-
-interface CartSliceState {
-    cartItems: CartItemType;
-    totalCount: number;
-    totalAmount: number
-}
 
 const {cartItems, totalCount, totalAmount} = getCartFromLS();
 

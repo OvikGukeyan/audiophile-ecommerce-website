@@ -1,12 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../redux/store';
 import styles from './Items.module.scss';
 import { Item, Skeleton } from '../../components';
-import { fetchItems, selectItems } from '../../redux/slices/itemsSlice';
-import { CategoryType, selectFilters, setCategory } from '../../redux/slices/filterSlice';
+import { selectItems } from '../../redux/slices/items/itemsSlice';
+import { selectFilters, setCategory } from '../../redux/slices/filter/filterSlice';
 import { useNavigate } from 'react-router-dom';
-import qs from "qs";
+import { CategoryType } from '../../redux/slices/filter/types';
+import { fetchItems } from '../../redux/slices/items/utils';
 
 type ItemsPropsType = {
   handleChoseItem: (id: number) => void;
@@ -20,7 +21,7 @@ const Items: React.FC<ItemsPropsType> = ({ handleChoseItem, categoryes }) => {
   const { category } = useSelector(selectFilters);
 
   useEffect(() => {
-    dispatch(fetchItems(category?.name));
+    dispatch(fetchItems(category?.name!));
     window.scrollTo(0, 0);
   }, [category]);
 

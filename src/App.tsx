@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation, Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { Footer, Header, NavBar } from './components';
-import { CategoryType, setCategory, setCurrentItemId } from './redux/slices/filterSlice';
+import { setCategory, setCurrentItemId } from './redux/slices/filter/filterSlice';
 import Items from './pages/Items';
 import Home from './pages/Home';
 import FullItem from './pages/FullItem';
 import './App.css';
 import Checkout from './pages/Checkout';
+import { CategoryType } from './redux/slices/filter/types';
 
 
 
@@ -32,7 +33,7 @@ const App: React.FC = () => {
   const handleChoseItem = (id: number) => {
     dispatch(setCurrentItemId(id))
     navigate('/full-item')
-    window.scroll(0,0)
+    window.scroll(0, 0)
   }
 
   return (
@@ -42,9 +43,9 @@ const App: React.FC = () => {
         categoryes={categoryes}
         navBarOpen={navBarOpen}
         setNavBarOpen={setNavBarOpen}
-         />
+      />
       <Routes>
-        <Route path='' element={<Home
+        <Route path='/' element={<Home
           handleChoseItem={handleChoseItem}
         />} />
 
@@ -52,13 +53,16 @@ const App: React.FC = () => {
           handleChoseItem={handleChoseItem}
           categoryes={categoryes} />} />
 
-        <Route path='full-item' element={<FullItem 
+        <Route path='full-item' element={<FullItem
           handleChoseItem={handleChoseItem}
         />} />
 
 
         <Route path='checkout' element={<Checkout />} />
-
+        <Route
+          path="*"
+          element={<Navigate to="/" replace />}
+        />
       </Routes>
       {location.pathname !== '/checkout' && <NavBar
         handleChooseCategory={handleChooseCategory}

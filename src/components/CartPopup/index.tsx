@@ -1,10 +1,11 @@
 import React, { useRef, useState, MouseEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useLocation } from 'react-router-dom';
+
 import styles from './CartPopup.module.scss'
 import Button from '../Button';
 import { CartItem } from '../';
-import { clearCartItems, itemMinus, itemPlus, selectCart } from '../../redux/slices/cartSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { clearCartItems, itemMinus, itemPlus, selectCart } from '../../redux/slices/cart/cartSlice';
 
 
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation } from "react-router-dom";
 
 import styles from './Footer.module.scss';
-import { CategoryType } from '../../redux/slices/filterSlice';
+import { CategoryType } from '../../redux/slices/filter/types';
 
 type FooterPropsType = {
   handleChooseCategory: (category: CategoryType) => void;
@@ -38,7 +38,7 @@ const Footer: React.FC<FooterPropsType> = ({ handleChooseCategory, categoryes })
                   <li>HOME</li>
                 </Link>
                 {categoryes.map((category) => (
-                  <Link to='/items'>
+                  <Link key={category.name} to='/items'>
                     <li onClick={() => handleChooseCategory(category)}>{category.name.toUpperCase()}</li>
                   </Link>
                 ))}

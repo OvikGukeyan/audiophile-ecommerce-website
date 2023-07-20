@@ -1,15 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { RootState } from '../store';
+import { RootState } from '../../store';
+import { FiltersSliceState } from './types';
 
-export type CategoryType = {
-    name: string;
-    image: string;
-} 
-
-export interface FiltersSliceState {
-    category: CategoryType | null;
-    currentItemId: number | null;
-}
 
 const initialState: FiltersSliceState  = {
     category: null,

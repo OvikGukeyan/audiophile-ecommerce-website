@@ -1,7 +1,8 @@
-import React from 'react'
+import React from 'react';
+
 import Button from '../Button';
 import styles from './OtherItem.module.scss';
-import { otherType } from '../../redux/slices/itemsSlice';
+import { otherType } from '../../redux/slices/items/types';
 
 type OtherItemProps = {
     obj: otherType
